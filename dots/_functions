@@ -1,0 +1,11 @@
+
+fingerprint() { ssh-keygen -lf $1 -E md5; }
+gam() { git commit -am "$*"; }
+gaam() { git add . && git commit -am "$*"; }
+
+refaactoring() { git add . && git commit -am "Refactoring"; }
+fixeda() { git add . && git commit -am "Fixed"; }
+wipa() { git add . && git commit -am "WIP"; }
+
+# vim: ft=bash:
+

@@ -1,0 +1,6 @@
+
+alias showpath='echo $PATH | tr ":" "\n"'
+alias showenv='env | sort'
+
+# vim: ft=bash:
+
