@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+case `uname` in
+  *CYGWIN*|*MINGW*|*MSYS*) script_dir=`cygpath -w ${script_dir}`
+esac
+
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+#gh repo clone ocornut/implot
+#gh repo clone ocornut/imgui_club
+gh repo clone ocornut/single_file_libs
+gh repo clone ocornut/soloud
+gh repo clone ocornut/glfw
+gh repo clone ocornut/gpuvis
+
+
+

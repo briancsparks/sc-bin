@@ -1,0 +1,33 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+case `uname` in
+  *CYGWIN*|*MINGW*|*MSYS*) script_dir=`cygpath -w ${script_dir}`
+esac
+
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+gi ()
+{
+  curl -sL "https://www.gitignore.io/api/$@"
+}
+
+gi vim          >> .gitignore
+gi dotenv       >> .gitignore
+gi intellij+all >> .gitignore
+gi cpp          >> .gitignore
+gi c            >> .gitignore
+gi cmake        >> .gitignore
+gi conan        >> .gitignore
+gi cuda         >> .gitignore
+gi valgrind     >> .gitignore
+gi vcpkg        >> .gitignore
+gi xcode        >> .gitignore
+
+
+echo "Maybe add these:"
+echo "gi platformio   >> .gitignore"
+echo "gi ros          >> .gitignore"
+echo "gi ros2         >> .gitignore"
+

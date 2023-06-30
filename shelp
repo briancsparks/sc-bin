@@ -1,0 +1,88 @@
+#!/bin/bash -e
+
+
+cat - <<'EOF'
+cd leeting leeting2 leeting3 bcs bcsgh briancsparks ad redredred scratch
+
+Notes:
+https://www.slant.co/topics/1843/~best-windows-package-managers
+- Windows package managers: scoop, choco, winget, nuget
+
+PowerShell: Find-Module, Find-DscResource, Find-Script [-Repository PSGallery]
+
+https://www.windowsremix.com/
+
+-- Various Messages I Do Not Want to Forget -----------------------------
+
+Win64 scikit-learn acceleration (See: https://intel.github.io/scikit-learn-intelex/)
+
+conda install scikit-learn-intelex
+python -m sklearnex my_app.py
+
+-- ------------------------------------------------------------------
+
+shelp         -- This command.
+
+-- Full Usages -----------
+adgit    -- Run a git command, but use creds from the active-developer user.
+            Is basically an alias for 'git', but sets up the id_rsa-ad.
+
+leetcode -- Forks codeblitzing/leetcode (from gh template) into codeblitzing/$1
+            and then clones it into $1.
+            -- Best to do in /d/.../leeting/codeblitzing
+            -- Does NOT work in cygwin, use Git Gash
+
+ghetem   -- Clones all of an org's or user's repos (whose name is in $1).
+            They go into ./$ORG/a, ./$ORG/b, ./$ORG/c, etc.
+            Hard-coded limit of 300 repos
+            Stops on first failure, but...
+              on second run will skip any already-done items, and...
+              will skip any that caused errors.
+            So, continually running it will eventually get them all clonded
+              (the non-erroring ones, at least.)
+         !!! cygwin only
+
+-- Locations of Files -------------
+
+Alacritty config:     %AppData%\Roaming\alacritty\alacritty.yml
+
+-- Stuff I Always Forget ----------
+conda!    -- On Windows, start anaconda navigator, start a powershell prompt.
+conda info --envs
+conda activate <name>
+conda create <name>   # then do 'conda install m2-base' to get bash-like utils
+
+-- Convienent Commands ------------
+declare -f                  list full bash functions
+declare -F                  list bash function names
+
+git submodule init
+git submodule update
+
+# New repo for different user
+git remote add origin git@github.com:activedevelopment/splat-board.git
+Then, change 'github.com' to 'githubja' in the .git/config file
+git config --local --add user.name "Active D Ninja"
+git config --local --add user.email "activedevelopmentninja@gmail.com"
+git push -u origin main
+
+-- Search -------------------------
+List all Conan modules:     conan search -r all --raw
+List all vcpkg modules:     vcpkg search
+List ImageMagick fonts:     convert -list font   | egrep 'Font'
+
+-- Snippets -----------------------
+Generate SSH key:           ssh-keygen -t rsa -b 4096 -C "email.address@gmail.com" -f id_rsa-myname
+
+-- Quick Usages -------------------
+Make new leetcode repo:     leetcode      123-abc
+Get all from org:           ghetem        GH_ORG_NAME
+Update all from org:        uhpdatem      GH_ORG_NAME
+git from AD gh user:        adgit         ...
+                            wsl           --terminate (-t) <distro-name>;  --shutdown
+Invoking (starting) WSL:    wsl           -u user -d distro -cd dir ('~' for HOME)
+WSL info:                   wsl           -l --all/--running -v (--oneline shows available to install) (-l -v is show running status)
+Static File Server          npx           http-server -p 8001 docs/_build/html/
+
+EOF
+

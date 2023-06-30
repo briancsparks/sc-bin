@@ -1,0 +1,36 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+case `uname` in
+  *CYGWIN*|*MINGW*|*MSYS*) script_dir=`cygpath -w ${script_dir}`
+esac
+
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+GH_ORG="$1"
+
+for repo in `gh repo list "${GH_ORG}" --limit 300 --json name,diskUsage,contactLinks,id,languages,owner,parent,url | jq -r '.[] .name'`
+do
+  echo ""
+  echo "git@github.com:${GH_ORG}/${repo}.git"
+  echo "================================================================"
+
+  if ! [[ -d "${GH_ORG}/${repo}" ]]; then
+    echo git clone "git@github.com:${GH_ORG}/${repo}.git" "${GH_ORG}/${repo}"
+    git clone "git@github.com:${GH_ORG}/${repo}.git" "${GH_ORG}/${repo}"
+  else
+    echo git pulling "${GH_ORG}/${repo}"
+    pushd "${GH_ORG}/${repo}"
+
+    echo git remote update
+    git remote update
+
+    echo git pull --ff-only
+    git pull --ff-only || true
+
+    popd
+  fi
+done
+
+
