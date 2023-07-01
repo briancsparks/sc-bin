@@ -7,5 +7,43 @@ refaactoring() { git add . && git commit -am "Refactoring"; }
 fixeda() { git add . && git commit -am "Fixed"; }
 wipa() { git add . && git commit -am "WIP"; }
 
+vert() {
+  local PVER="3.8"
+  local ENVR="venv"
+
+  if [[ $# > 0 ]]; then
+    PVER="$1"
+    shift
+  fi
+
+  if [[ $# > 0 ]]; then
+    ENVR="$1"
+    shift
+  fi
+
+  if [[ -d $ENVR ]]; then
+    source "$ENVR/bin/activate"
+  else
+    echo "---------- virtualenv -p python$PVER $ENVR ----------"
+    virtualenv -p "python$PVER" "$ENVR"
+    source "$ENVR/bin/activate"
+
+    echo '---------- pip install --upgrade pip wheel ----------'
+    pip install --upgrade pip wheel
+
+    echo ""
+    echo "---------- Now install any other packages like ----------"
+    echo ""
+    echo "pip install 'echodyne @ git+ssh://github.com/skysafe/echodyne'"
+    echo ""
+    echo "Then install..."
+    echo ""
+    echo "pip install -e '.[dev]'"
+  fi
+
+
+
+}
+
 # vim: ft=bash:
 
