@@ -7,7 +7,15 @@ refaactoring() { git add . && git commit -am "Refactoring"; }
 fixeda() { git add . && git commit -am "Fixed"; }
 wipa() { git add . && git commit -am "WIP"; }
 
-vert() {
+__gitbranch() {
+  git branch | grep '^\*' | grep -o '[^ ]*$' | tail -1
+}
+
+branch_name() {
+  git branch -a | egrep $1 | cut -d/ -f 3
+}
+
+vert_ignore() {
   local PVER="3.8"
   local ENVR="venv"
 
@@ -34,15 +42,22 @@ vert() {
     echo ""
     echo "---------- Now install any other packages like ----------"
     echo ""
-    echo "pip install 'echodyne @ git+ssh://github.com/skysafe/echodyne'"
+    echo "pip install 'echodyne @ git+ssh://git@github.com/skysafe/echodyne'"
     echo ""
     echo "Then install..."
     echo ""
     echo "pip install -e '.[dev]'"
+    echo ""
   fi
+}
 
-
-
+vert() {
+  local BRANCH="$(__gitbranch)"
+  if [[ $BRANCH == main ]]; then
+    echo "On main branch! Switch branches or vert_ignore"
+  else
+    vert_ignore $@
+  fi
 }
 
 # vim: ft=bash:
