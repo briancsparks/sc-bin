@@ -16,7 +16,7 @@ branch_name() {
 }
 
 vert_ignore() {
-  local PVER="3.8"
+  local PVER="3.9"
   local ENVR="venv"
 
   if [[ $# > 0 ]]; then
