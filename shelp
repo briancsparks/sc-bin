@@ -83,6 +83,7 @@ git from AD gh user:        adgit         ...
 Invoking (starting) WSL:    wsl           -u user -d distro -cd dir ('~' for HOME)
 WSL info:                   wsl           -l --all/--running -v (--oneline shows available to install) (-l -v is show running status)
 Static File Server          npx           http-server -p 8001 docs/_build/html/
+Virtual envs                vert          [python ver num: 3.8] [env dir: venv]"
 
 EOF
 
