@@ -15,7 +15,7 @@ branch_name() {
   git branch -a | egrep $1 | cut -d/ -f 3
 }
 
-vert_ignore() {
+vert_main() {
   local PVER="3.9"
   local ENVR="venv"
 
@@ -54,9 +54,9 @@ vert_ignore() {
 vert() {
   local BRANCH="$(__gitbranch)"
   if [[ $BRANCH == main ]]; then
-    echo "On main branch! Switch branches or vert_ignore"
+    echo "On main branch! Switch branches or vert_main"
   else
-    vert_ignore $@
+    vert_main $@
   fi
 }
 
