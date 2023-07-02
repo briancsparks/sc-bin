@@ -7,6 +7,25 @@ refaactoring() { git add . && git commit -am "Refactoring"; }
 fixeda() { git add . && git commit -am "Fixed"; }
 wipa() { git add . && git commit -am "WIP"; }
 
+__check_pip() {
+  if [[ $1 == force ]]; then
+    local FORCE=1
+    shift
+  fi
+
+  if [[ $1 != install ]]; then
+    pip $@
+  elif [[ -z $VIRTUAL_ENV && -z $FORCE ]]; then
+    echo ""
+    echo "!!! Must be in a virtual env to pip-install. Use 'virtualenv' or 'vert'"
+    echo ""
+
+    return 9
+  else
+    pip $@
+  fi
+}
+
 __gitbranch() {
   git branch | grep '^\*' | grep -o '[^ ]*$' | tail -1
 }
