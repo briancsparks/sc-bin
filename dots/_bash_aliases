@@ -11,6 +11,10 @@ alias tree2='tree -L 2 -I '\''node_modules|bower_components|ppds|_tmp|cmake-buil
 alias treesm2='tree -L 2 -I '\''node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
 alias tree3='tree -L 3 -I '\''node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
 alias treesm3='tree -L 3 -I '\''node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
+alias tree4='tree -L 4 -I '\''node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
+alias treesm4='tree -L 4 -I '\''node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
+alias tree5='tree -L 5 -I '\''node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
+alias treesm5='tree -L 5 -I '\''node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
 
 # vim: ft=bash:
 

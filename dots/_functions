@@ -14,6 +14,7 @@ __check_pip() {
   fi
 
   if [[ $1 != install ]]; then
+    #echo "pip not installing - OK"
     pip $@
   elif [[ -z $VIRTUAL_ENV && -z $FORCE ]]; then
     echo ""
@@ -22,8 +23,10 @@ __check_pip() {
 
     return 9
   else
+    #echo "pip install into venv - OK"
     pip $@
   fi
+  #echo "Done"
 }
 
 __gitbranch() {
@@ -35,7 +38,7 @@ branch_name() {
 }
 
 vert_main() {
-  local PVER="3.9"
+  local PVER="3.8"
   local ENVR="venv"
 
   if [[ $# > 0 ]]; then
@@ -48,6 +51,7 @@ vert_main() {
     shift
   fi
 
+  set -e
   if [[ -d $ENVR ]]; then
     source "$ENVR/bin/activate"
   else
