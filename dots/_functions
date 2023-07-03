@@ -65,7 +65,7 @@ vert_main() {
     echo ""
     echo "---------- Now install any other packages like ----------"
     echo ""
-    echo "pip install 'echodyne @ git+ssh://git@github.com/skysafe/echodyne'"
+    echo "pip install 'git+ssh://git@github.com/skysafe/echodyne'"
     echo ""
     echo "Then install..."
     echo ""
