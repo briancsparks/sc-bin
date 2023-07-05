@@ -51,7 +51,6 @@ vert_main() {
     shift
   fi
 
-  set -e
   if [[ -d $ENVR ]]; then
     source "$ENVR/bin/activate"
   else
