@@ -10,6 +10,9 @@ die() { errcho "$@"; exit 1; }
 
 GH_ORG="$1"
 
+[[ -n $GH_ORG ]] || die "must provide orgname"
+[[ -d $GH_ORG ]] || die "Must be in parent of $GH_ORG dir"
+
 for repo in `gh repo list "${GH_ORG}" --limit 300 --json name,diskUsage,contactLinks,id,languages,owner,parent,url | jq -r '.[] .name'`
 do
   echo ""
