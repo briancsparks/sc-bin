@@ -7,6 +7,10 @@ refaactoring() { git add . && git commit -am "Refactoring"; }
 fixeda() { git add . && git commit -am "Fixed"; }
 wipa() { git add . && git commit -am "WIP"; }
 
+findbranch() {
+  git branch -a | egrep "$1" | head -1 | cut -d/ -f 3
+}
+
 __check_pip() {
   if [[ $1 == force ]]; then
     local FORCE=1
@@ -33,8 +37,8 @@ __gitbranch() {
   git branch | grep '^\*' | grep -o '[^ ]*$' | tail -1
 }
 
-branch_name() {
-  git branch -a | egrep $1 | cut -d/ -f 3
+branchname() {
+  git branch -a | egrep "$1" | head -1 | cut -d/ -f 3
 }
 
 vert_main() {
@@ -53,6 +57,7 @@ vert_main() {
 
   if [[ -d $ENVR ]]; then
     source "$ENVR/bin/activate"
+    echo "---------- using existing virtualenv: $ENVR, python$PVER ----------"
   else
     echo "---------- virtualenv -p python$PVER $ENVR ----------"
     virtualenv -p "python$PVER" "$ENVR"

@@ -58,6 +58,7 @@ declare -F                  list bash function names
 
 git submodule init
 git submodule update
+git submodule update --init --recursive
 
 # New repo for different user
 git remote add origin git@github.com:activedevelopment/splat-board.git
@@ -84,6 +85,8 @@ Invoking (starting) WSL:    wsl           -u user -d distro -cd dir ('~' for HOM
 WSL info:                   wsl           -l --all/--running -v (--oneline shows available to install) (-l -v is show running status)
 Static File Server          npx           http-server -p 8001 docs/_build/html/
 Virtual envs                vert          [python ver num: 3.8] [env dir: venv]"
+
+Find branch name            findbranch    name         For example, `findbranch 578`
 
 EOF
 
