@@ -41,6 +41,9 @@ ghetem   -- Clones all of an org's or user's repos (whose name is in $1).
             So, continually running it will eventually get them all clonded
               (the non-erroring ones, at least.)
          !!! cygwin only
+uhpdatem -- Once you ghetem, you can gpff all of them with uhpdatem.
+            Must be in the parent of ORG.
+            arg[1] == ORG
 
 -- Locations of Files -------------
 
@@ -87,6 +90,15 @@ Static File Server          npx           http-server -p 8001 docs/_build/html/
 Virtual envs                vert          [python ver num: 3.8] [env dir: venv]"
 
 Find branch name            findbranch    name         For example, `findbranch 578`
+
+Dump snippets files         snips
+
+Python checkers             npx prettier  --write or --check
+                            isort .       --check to only check
+                            flake8        --exclude='venv/*,node_modules/*'
+                            npx eslint    --max-warnings 0 --ext .js,.vue
+                            black .
+                            pip install   isort flake8 black
 
 EOF
 

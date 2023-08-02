@@ -1,0 +1,18 @@
+##### FILES
+
+ERR_FILE=$(mktemp)
+# trap the exit handle to delete this file
+trap 'rm -rf -- "$ERR_FILE"' EXIT
+
+# Pass --color here so we get nice output
+OUTPUT=$(npx prettier --color "$OPT_ARG" "$TOP_LEVEL" 2> "$ERR_FILE")
+PRETTIER_OUTPUT=$?
+ERR=$(<"$ERR_FILE")
+
+if [ "$PRETTIER_OUTPUT" -ne 0 ]; then
+    echo "$OUTPUT"
+    echo "$ERR"
+fi
+
+(exit $PRETTIER_OUTPUT)
+

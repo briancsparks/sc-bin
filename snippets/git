@@ -1,0 +1,4 @@
+##### GIT
+
+TOP_LEVEL="$(git rev-parse --show-toplevel)"
+
