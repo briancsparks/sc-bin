@@ -1,0 +1,27 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+case `uname` in
+  *CYGWIN*|*MINGW*|*MSYS*) script_dir=`cygpath -w ${script_dir}`
+esac
+
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+ensurecmd() {
+  command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."
+}
+
+ensurecmd docker
+
+echo '------------------- containers ------------'
+docker container ls -a
+
+echo ""
+echo '------------------- images ------------'
+docker images ls -a
+
+echo ""
+echo '------------------- volumes ------------'
+docker volume ls
+
