@@ -75,6 +75,25 @@ List all Conan modules:     conan search -r all --raw
 List all vcpkg modules:     vcpkg search
 List ImageMagick fonts:     convert -list font   | egrep 'Font'
 
+-- Docker -------------------------
+docker ps
+docker ps -a
+docker container ls -a
+docker image ls
+docker volume ls
+docker network ls
+docker plugin ls
+
+-- Swarm
+docker service ls
+docker node ls
+docker stack ls
+docker secret ls
+docker config ls
+
+-- BuildX
+docker buildx ls
+
 -- Snippets -----------------------
 Generate SSH key:           ssh-keygen -t rsa -b 4096 -C "email.address@gmail.com" -f id_rsa-myname
 
