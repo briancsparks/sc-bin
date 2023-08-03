@@ -1,0 +1,10 @@
+##### BASH
+
+#-- Checking
+
+GH_ORG="$1"
+
+[[ -n $GH_ORG ]] || die "must provide orgname"
+[[ -d $GH_ORG ]] || die "Must be in parent of $GH_ORG dir"
+
+

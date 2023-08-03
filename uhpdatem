@@ -13,7 +13,12 @@ GH_ORG="$1"
 [[ -n $GH_ORG ]] || die "must provide orgname"
 [[ -d $GH_ORG ]] || die "Must be in parent of $GH_ORG dir"
 
-for repo in `gh repo list "${GH_ORG}" --limit 300 --json name,diskUsage,contactLinks,id,languages,owner,parent,url | jq -r '.[] .name'`
+REPO_LIST_JSON=`gh repo list "${GH_ORG}" --limit 450 --json name,diskUsage,contactLinks,id,languages,owner,parent,url`
+printf "Processing %d repos\n" `echo $REPO_LIST_JSON | jq '. | length'`
+REPO_LIST=`echo $REPO_LIST_JSON | jq -r '.[] .name'`
+
+#for repo in `gh repo list "${GH_ORG}" --limit 300 --json name,diskUsage,contactLinks,id,languages,owner,parent,url | jq -r '.[] .name'`
+for repo in $REPO_LIST
 do
   echo ""
   echo "git@github.com:${GH_ORG}/${repo}.git"
