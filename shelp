@@ -70,6 +70,10 @@ git config --local --add user.name "Active D Ninja"
 git config --local --add user.email "activedevelopmentninja@gmail.com"
 git push -u origin main
 
+git stash push setup.py       Stash one file
+git stash list
+git reset --hard HEAD~1
+
 -- Search -------------------------
 List all Conan modules:     conan search -r all --raw
 List all vcpkg modules:     vcpkg search
