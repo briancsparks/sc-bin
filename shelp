@@ -123,5 +123,9 @@ Python checkers             npx prettier  --write or --check
                             black .
                             pip install   isort flake8 black
 
+TOOD:?
+
+change `.config/gh/config.yml` to use `ssh`, not `https`.
+
 EOF
 
