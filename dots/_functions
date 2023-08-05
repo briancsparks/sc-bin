@@ -79,11 +79,14 @@ vert_main() {
 }
 
 vert() {
+  #local GITTOP="$(git rev-parse --show-toplevel)"
   local BRANCH="$(__gitbranch)"
-  if [[ $BRANCH == main ]]; then
-    echo "On main branch! Switch branches or vert_main"
-  else
-    vert_main $@
+  if [[ -n $BRANCH ]]; then
+    if [[ $BRANCH == main ]]; then
+      echo "On main branch! Switch branches or vert_main"
+    else
+      vert_main $@
+    fi
   fi
 }
 

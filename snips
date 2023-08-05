@@ -13,5 +13,5 @@ ensurecmd() {
 }
 
 export GREP_COLORS='ms=01;33'
-(for f in `ls snippets/`; do cat "snippets/$f"; done) | egrep --color=always '^#####.*$|$'
+(for f in `ls ${script_dir}/snippets/`; do cat "${script_dir}/snippets/$f"; done) | egrep --color=always '^#####.*$|$'
 
