@@ -37,6 +37,10 @@ alias treesm4='tree -L 4    -I '\''venv|node_modules|bower_components|ppds|_tmp|
 alias treeeeee='tree -L 5   -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
 alias tree5='tree -L 5      -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
 alias treesm5='tree -L 5    -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
+alias tree6='tree -L 6      -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
+alias treesm6='tree -L 6    -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
+alias tree7='tree -L 7      -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
+alias treesm7='tree -L 7    -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
 
 alias duhs='for d in `ls`; do test -d $d && (cd $d; pwd; du -h | tail -1); sleep 0.2; done'
 alias dus='for d in `ls`; do test -d $d && (cd $d; pwd; du | tail -1); sleep 0.2; done'
