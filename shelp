@@ -1,5 +1,21 @@
 #!/bin/bash -e
 
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+if [[ $# > 0 ]]; then
+  SUB_SHELP="$1"
+  shift
+
+  if [[ -f "${script_dir}/shelps/${SUB_SHELP}" ]]; then
+    cat "${script_dir}/shelps/${SUB_SHELP}" | glow
+    exit 0
+  else
+    die "Cannot find shelp for \"$SUB_SHELP\" (Try: `ls $script_dir/shelps | tr ' ' ' ' | tr '\n' ' '`)"
+  fi
+fi
+
 
 cat - <<'EOF'
 cd leeting leeting2 leeting3 bcs bcsgh briancsparks ad redredred scratch

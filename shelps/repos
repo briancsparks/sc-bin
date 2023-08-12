@@ -1,0 +1,17 @@
+# Repos and Locations
+
+| Dir | Description | Notes |
+| :--- | :--- | :--- |
+| ~/dev | Main development dir. |  |
+| ~/projects | Main dir for non-repos (data or likewise.) |  |
+| ~/bdev | Repos outside work, that I am interested in, including /briancsparks and /activedevelopment, etc. |  |
+| ~/3dev | Repos for work, but unowned by work. |  |
+| ~/3dev/openwrt | For OpenWRT work. |  |
+| .../openwrt | The main branch. | compiled |
+| .../openwrt2102 | tag: openwrt-21.02 | compiled |
+| .../openwrt2203 | tag: openwrt-22.03 | compiled |
+| .../openwrt2305 | tag: openwrt-23.05 | compiled |
+| .../openwrt-rutx10 | Franken-build (RUTX11 forced into RUTX10) | compiled |
+| .../openwrt-rutx11 | Build of RUTX11 the right way | compiled |
+| .../openwrt-src-only | | un-compiled |
+
