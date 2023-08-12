@@ -1,4 +1,6 @@
 
+#echo "._functions start"
+
 fingerprint() { ssh-keygen -lf $1 -E md5; }
 gam() { git commit -am "$*"; }
 gaam() { git add . && git commit -am "$*"; }
@@ -89,6 +91,8 @@ vert() {
     fi
   fi
 }
+
+#echo "._functions end"
 
 # vim: ft=bash:
 

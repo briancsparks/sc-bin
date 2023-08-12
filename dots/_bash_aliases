@@ -1,4 +1,6 @@
 
+#echo "._bash_aliases start"
+
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
@@ -62,6 +64,12 @@ alias wip='git commit -am "WIP"'
 alias bump='git commit -am "bump version"'
 alias gfirst='git commit -am first'
 alias gprgp='git pull --rebase && git push'
+
+# SSHish
+alias scpix='scp    -o "StrictHostKeyChecking no" -o UserKnownHostsFile=/dev/null -o ConnectTimeout=1 -o LogLevel=quiet $@'
+alias sshix='ssh -A -o "StrictHostKeyChecking no" -o UserKnownHostsFile=/dev/null -o ConnectTimeout=1 -o LogLevel=quiet $@'
+
+#echo "._bash_aliases end"
 
 # vim: ft=bash:
 
