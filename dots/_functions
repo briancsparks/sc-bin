@@ -43,7 +43,19 @@ branchname() {
   git branch -a | egrep "$1" | head -1 | cut -d/ -f 3
 }
 
-vert_main() {
+vert_post_msg() {
+  echo ""
+  echo "---------- Now install any other packages like ----------"
+  echo ""
+  echo "pip install 'git+ssh://git@github.com/skysafe/echodyne'"
+  echo ""
+  echo "Then install..."
+  echo ""
+  echo "pip install -e '.[dev]'"
+  echo ""
+}
+
+do_vert() {
   local PVER="3.8"
   local ENVR="venv"
 
@@ -67,17 +79,17 @@ vert_main() {
 
     echo '---------- pip install --upgrade pip wheel ----------'
     pip install --upgrade pip wheel
-
-    echo ""
-    echo "---------- Now install any other packages like ----------"
-    echo ""
-    echo "pip install 'git+ssh://git@github.com/skysafe/echodyne'"
-    echo ""
-    echo "Then install..."
-    echo ""
-    echo "pip install -e '.[dev]'"
-    echo ""
   fi
+
+  if ! grep 'venv' .gitignore; then
+    echo "Adding 'venv' to .gitignore"
+    echo "venv" >> .gitignore
+  fi
+}
+
+vert_main() {
+  do_vert $@
+  vert_post_msg $@
 }
 
 vert() {
@@ -87,8 +99,12 @@ vert() {
     if [[ $BRANCH == main ]]; then
       echo "On main branch! Switch branches or vert_main"
     else
-      vert_main $@
+      do_vert $@
+      vert_post_msg $@
     fi
+  else
+    echo "Not a git repo."
+    do_vert$@
   fi
 }
 

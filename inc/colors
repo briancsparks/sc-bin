@@ -1,0 +1,60 @@
+#!/bin/bash -e
+
+###A source this file to use the defined colors
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
+
+# Foreground colors
+declare -A FG_COLORS
+FG_COLORS[BLACK]='\x1B[30m'
+FG_COLORS[RED]='\x1B[31m'
+FG_COLORS[GREEN]='\x1B[32m'
+FG_COLORS[YELLOW]='\x1B[33m'
+FG_COLORS[BLUE]='\x1B[34m'
+FG_COLORS[MAGENTA]='\x1B[35m'
+FG_COLORS[CYAN]='\x1B[36m'
+FG_COLORS[WHITE]='\x1B[37m'
+
+# Background colors
+declare -A BG_COLORS
+BG_COLORS[BLACK]='\x1B[40m'
+BG_COLORS[RED]='\x1B[41m'
+BG_COLORS[GREEN]='\x1B[42m'
+BG_COLORS[YELLOW]='\x1B[43m'
+BG_COLORS[BLUE]='\x1B[44m'
+BG_COLORS[MAGENTA]='\x1B[45m'
+BG_COLORS[CYAN]='\x1B[46m'
+BG_COLORS[WHITE]='\x1B[47m'
+
+# Reset codes
+RESET_FG='\x1B[0m'
+RESET_BG='\x1B[49m'
+
+
+# Display foreground colors without background
+echo "Foreground colors without background:"
+for fg_key in "${!FG_COLORS[@]}"; do
+  echo -e "${FG_COLORS[$fg_key]}Foreground: $fg_key${RESET_FG}"
+done
+echo 'echo -e "${FG_COLORS[$fg_key]}Foreground: $fg_key${RESET_FG}"  (fg_key is MAGENTA, GREEN, etc.)'
+
+printf "\n\n\n"
+
+echo "Foreground and background color combinations:"
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  #echo "This script is being run, not sourced."
+  # Loop through and display combinations
+  for fg_key in "${!FG_COLORS[@]}"; do
+      for bg_key in "${!BG_COLORS[@]}"; do
+          echo -e "${FG_COLORS[$fg_key]}${BG_COLORS[$bg_key]}Foreground: $fg_key, Background: $bg_key${RESET_FG}${RESET_BG}"
+      done
+  done
+  echo 'echo -e "${FG_COLORS[$fg_key]}${BG_COLORS[$bg_key]}Foreground: $fg_key, Background: $bg_key${RESET_FG}${RESET_BG}"'
+#else
+  #echo "This script is being sourced, not run."
+fi
+
+

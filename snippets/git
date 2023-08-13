@@ -1,4 +1,14 @@
 ##### GIT
 
+## Get the Root of the Project
+
+```shell
 TOP_LEVEL="$(git rev-parse --show-toplevel)"
+```
+
+## Get all the branches from origin
+
+```shell
+for br in `git branch -a | egrep origin | egrep -v HEAD | cut -d'/' -f 3`; do git checkout $br; done
+```
 
