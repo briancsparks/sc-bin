@@ -2,59 +2,109 @@
 
 ###A source this file to use the defined colors
 
-script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
-errcho() { echo "$@" 1>&2; }
-die() { errcho "$@"; exit 1; }
-ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
+#script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+#errcho() { echo "$@" 1>&2; }
+#die() { errcho "$@"; exit 1; }
+#ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
 
-# Foreground colors
-declare -A FG_COLORS
-FG_COLORS[BLACK]='\x1B[30m'
-FG_COLORS[RED]='\x1B[31m'
-FG_COLORS[GREEN]='\x1B[32m'
-FG_COLORS[YELLOW]='\x1B[33m'
-FG_COLORS[BLUE]='\x1B[34m'
-FG_COLORS[MAGENTA]='\x1B[35m'
-FG_COLORS[CYAN]='\x1B[36m'
-FG_COLORS[WHITE]='\x1B[37m'
+BLACK_FG='\x1B[30m'
+RED_FG='\x1B[31m'
+GREEN_FG='\x1B[32m'
+YELLOW_FG='\x1B[33m'
+BLUE_FG='\x1B[34m'
+MAGENTA_FG='\x1B[35m'
+CYAN_FG='\x1B[36m'
+WHITE_FG='\x1B[37m'
+RESET_FG='\x1B[0m'
 
-# Background colors
-declare -A BG_COLORS
-BG_COLORS[BLACK]='\x1B[40m'
-BG_COLORS[RED]='\x1B[41m'
-BG_COLORS[GREEN]='\x1B[42m'
-BG_COLORS[YELLOW]='\x1B[43m'
-BG_COLORS[BLUE]='\x1B[44m'
-BG_COLORS[MAGENTA]='\x1B[45m'
-BG_COLORS[CYAN]='\x1B[46m'
-BG_COLORS[WHITE]='\x1B[47m'
+BLACK_BG='\x1B[40m'
+RED_BG='\x1B[41m'
+GREEN_BG='\x1B[42m'
+YELLOW_BG='\x1B[43m'
+BLUE_BG='\x1B[44m'
+MAGENTA_BG='\x1B[45m'
+CYAN_BG='\x1B[46m'
+WHITE_BG='\x1B[47m'
 
 # Reset codes
 RESET_FG='\x1B[0m'
 RESET_BG='\x1B[49m'
 
+## Foreground colors
+#declare -A FG_COLORS
+#FG_COLORS[BLACK]=$BLACK_FG
+#FG_COLORS[RED]=$RED_FG
+#FG_COLORS[GREEN]=$GREEN_FG
+#FG_COLORS[YELLOW]=$YELLOW_FG
+#FG_COLORS[BLUE]=$BLUE_FG
+#FG_COLORS[MAGENTA]=$MAGENTA_FG
+#FG_COLORS[CYAN]=$CYAN_FG
+#FG_COLORS[WHITE]=$WHITE_FG
+#
+## Background colors
+#declare -A BG_COLORS
+#BG_COLORS[BLACK]=$BLACK_BG
+#BG_COLORS[RED]=$RED_FG_BG
+#BG_COLORS[GREEN]=$GREEN_BG
+#BG_COLORS[YELLOW]=$YELLOW_BG
+#BG_COLORS[BLUE]=$BLUE_BG
+#BG_COLORS[MAGENTA]=$MAGENTA_BG
+#BG_COLORS[CYAN]=$CYAN_BG
+#BG_COLORS[WHITE]=$WHITE_BG
 
-# Display foreground colors without background
-echo "Foreground colors without background:"
-for fg_key in "${!FG_COLORS[@]}"; do
-  echo -e "${FG_COLORS[$fg_key]}Foreground: $fg_key${RESET_FG}"
-done
-echo 'echo -e "${FG_COLORS[$fg_key]}Foreground: $fg_key${RESET_FG}"  (fg_key is MAGENTA, GREEN, etc.)'
+main() {
 
-printf "\n\n\n"
+  # Foreground colors
+  declare -A FG_COLORS
+  local FG_COLORS[BLACK]=$BLACK_FG
+  local FG_COLORS[RED]=$RED_FG
+  local FG_COLORS[GREEN]=$GREEN_FG
+  local FG_COLORS[YELLOW]=$YELLOW_FG
+  local FG_COLORS[BLUE]=$BLUE_FG
+  local FG_COLORS[MAGENTA]=$MAGENTA_FG
+  local FG_COLORS[CYAN]=$CYAN_FG
+  local FG_COLORS[WHITE]=$WHITE_FG
 
-echo "Foreground and background color combinations:"
+  # Background colors
+  declare -A BG_COLORS
+  local BG_COLORS[BLACK]=$BLACK_BG
+  local BG_COLORS[RED]=$RED_FG_BG
+  local BG_COLORS[GREEN]=$GREEN_BG
+  local BG_COLORS[YELLOW]=$YELLOW_BG
+  local BG_COLORS[BLUE]=$BLUE_BG
+  local BG_COLORS[MAGENTA]=$MAGENTA_BG
+  local BG_COLORS[CYAN]=$CYAN_BG
+  local BG_COLORS[WHITE]=$WHITE_BG
+
+  local fg_key
+  local bg_key
+
+    # Display foreground colors without background
+    echo "Foreground colors without background:"
+    for fg_key in "${!FG_COLORS[@]}"; do
+      echo -e "${FG_COLORS[$fg_key]}Foreground: $fg_key${RESET_FG}"
+    done
+    echo 'echo -e "${FG_COLORS[$fg_key]}Foreground: $fg_key${RESET_FG}"'
+    echo '  (fg_key is MAGENTA, GREEN, etc.)'
+
+    printf "\n\n\n"
+
+    echo "Foreground and background color combinations:"
+    #echo "This script is being run, not sourced."
+    # Loop through and display combinations
+    for fg_key in "${!FG_COLORS[@]}"; do
+        for bg_key in "${!BG_COLORS[@]}"; do
+            echo -e "${FG_COLORS[$fg_key]}${BG_COLORS[$bg_key]}FG: $fg_key, BG: $bg_key${RESET_FG}${RESET_BG}"
+        done
+    done
+    echo 'echo -e "${FG_COLORS[$fg_key]}${BG_COLORS[$bg_key]}FG: $fg_key, BG: $bg_key${RESET_FG}${RESET_BG}"'
+    echo '  (fg_key is MAGENTA, GREEN, etc.)'
+}
+
+
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  #echo "This script is being run, not sourced."
-  # Loop through and display combinations
-  for fg_key in "${!FG_COLORS[@]}"; do
-      for bg_key in "${!BG_COLORS[@]}"; do
-          echo -e "${FG_COLORS[$fg_key]}${BG_COLORS[$bg_key]}Foreground: $fg_key, Background: $bg_key${RESET_FG}${RESET_BG}"
-      done
-  done
-  echo 'echo -e "${FG_COLORS[$fg_key]}${BG_COLORS[$bg_key]}Foreground: $fg_key, Background: $bg_key${RESET_FG}${RESET_BG}"'
+  main $@
 #else
   #echo "This script is being sourced, not run."
 fi
-
 

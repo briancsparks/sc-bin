@@ -36,7 +36,7 @@ __check_pip() {
 }
 
 __gitbranch() {
-  git branch | grep '^\*' | grep -o '[^ ]*$' | tail -1
+  git branch 2> /dev/null | grep '^\*' | grep -o '[^ ]*$' | tail -1
 }
 
 branchname() {
@@ -56,6 +56,8 @@ vert_post_msg() {
 }
 
 do_vert() {
+  local GREEN_FG='\x1B[32m'
+  local RESET_FG='\x1B[0m'
   local PVER="3.8"
   local ENVR="venv"
 
@@ -74,14 +76,16 @@ do_vert() {
     echo "---------- using existing virtualenv: $ENVR, python$PVER ----------"
   else
     echo "---------- virtualenv -p python$PVER $ENVR ----------"
-    virtualenv -p "python$PVER" "$ENVR"
+    virtualenv -p "python$PVER" "$ENVR" | sed "s/^/$GREEN_FG    /"
+    echo -e "$RESET_FG"
     source "$ENVR/bin/activate"
 
     echo '---------- pip install --upgrade pip wheel ----------'
-    pip install --upgrade pip wheel
+    pip install --upgrade pip wheel | sed "s/^/$GREEN_FG    /"
+    echo -e "$RESET_FG"
   fi
 
-  if ! grep 'venv' .gitignore; then
+  if ! grep 'venv' .gitignore 2> /dev/null; then
     echo "Adding 'venv' to .gitignore"
     echo "venv" >> .gitignore
   fi
@@ -104,7 +108,7 @@ vert() {
     fi
   else
     echo "Not a git repo."
-    do_vert$@
+    do_vert $@
   fi
 }
 
