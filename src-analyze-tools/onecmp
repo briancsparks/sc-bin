@@ -1,0 +1,45 @@
+#!/bin/bash -e
+
+ # For '###A' and the like, follow instructions and remove the leading space.
+ ###A one-line description
+
+ ###B longer description
+ ###B
+ ###B --including
+ ###B --flags           And descriptions for a usage statement
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
+
+[[ $# > 1 ]] || die "usage: onecmp num sha"
+
+[[ -n $OTHER_SRC ]] || die "Must specify OTHER_SRC -- export OTHER_SRC=\`pwd\`"
+THIS_SRC=`pwd`
+OUTPUT_DIR="/tmp/cmp-openwrt2"
+OUTPUT_FILE="$OUTPUT_DIR/onecmp"
+
+mkdir -p $OUTPUT_DIR
+
+line=$1
+shift
+
+commit=$1
+shift
+
+# Do not waste time if already known
+grep $commit $OUTPUT_FILE > /dev/null && exit 0
+
+#echo "Processing $line for $commit"
+git checkout $commit 2> /dev/null
+commit_date=$(git show -s --format="%ci" $commit)
+
+diff_lines=$(diff -r -w -Na --exclude=".git" $OTHER_SRC $THIS_SRC 2>&1 | wc -l)
+diff_lines2=$(diff -r -w --exclude=".git" $OTHER_SRC $THIS_SRC 2>&1 | wc -l)
+
+#echo "$line ,$diff_lines,$diff_lines2,$commit,\"$commit_date\"" | tee -a "$OUTPUT_FILE"
+echo "$line ,$diff_lines,$diff_lines2,$commit,\"$commit_date\""
+
+
+

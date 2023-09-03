@@ -1,0 +1,60 @@
+#!/bin/bash -e
+
+ # For '###A' and the like, follow instructions and remove the leading space.
+ ###A one-line description
+
+ ###B longer description
+ ###B
+ ###B --including
+ ###B --flags           And descriptions for a usage statement
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
+
+[[ -n $OTHER_SRC ]] || die "Must specify OTHER_SRC -- export OTHER_SRC=\`pwd\`"
+
+THIS_SRC=`pwd`
+
+#echo "Comparing $THIS_SRC and $OTHER_SRC"
+#diff_lines=$(diff -r --exclude=".git" $THIS_SRC $OTHER_SRC | wc -l)
+#commit_date=$(git show -s --format="%ci" $commit)
+
+echo "==========================================================================================="
+echo "         Tlt - only"
+echo "==========================================================================================="
+echo ""
+diff -r -w --exclude=".git" $THIS_SRC $OTHER_SRC | egrep "Only in $OTHER_SRC"
+
+echo ""
+echo "==========================================================================================="
+echo "         OpenWRT - only"
+echo "==========================================================================================="
+echo ""
+diff -r -w --exclude=".git" $THIS_SRC $OTHER_SRC | egrep "Only in $THIS_SRC"
+
+
+echo ""
+echo "==========================================================================================="
+echo "         Diffs"
+echo "==========================================================================================="
+echo ""
+#diff -r -w --exclude=".git" $THIS_SRC $OTHER_SRC | egrep "diff -r"
+for files in `diff -r -w --exclude=".git" $THIS_SRC $OTHER_SRC | egrep "diff -r" | cut -d' ' -f5-6 | tr ' ' '^'`; do
+  printf "%14s    %s\n" \
+    `diff -w $(echo $files | tr '^' ' ') | wc -l` \
+    `echo $files | cut -d'^' -f1`
+done
+
+#echo "Totals:"
+
+printf "%14s    Only in $OTHER_SRC\n" \
+    `diff -r -w --exclude=".git" $THIS_SRC $OTHER_SRC | egrep "Only in $OTHER_SRC" | wc -l`
+
+printf "%14s    Only in $THIS_SRC\n" \
+    `diff -r -w --exclude=".git" $THIS_SRC $OTHER_SRC | egrep "Only in $THIS_SRC"  | wc -l`
+
+printf "%14s    Different\n" \
+    `diff -r -w --exclude=".git" $THIS_SRC $OTHER_SRC | egrep "diff -r" | wc -l`
+

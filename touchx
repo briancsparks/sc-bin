@@ -21,13 +21,6 @@ if [[ -n $EXISTS ]]; then
   [[ -z $FORCE ]] && die "$@ already exists, no change (but was touched and +x-ed). Use -f to force."
 fi
 
-#echo "#!/bin/bash -e" >> "$@"
-#echo "" >> "$@"
-#echo 'script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"' >> "$@"
-#echo "" >> "$@"
-#echo 'errcho() { echo "$@" 1>&2; }' >> "$@"
-#echo 'die() { errcho "$@"; exit 1; }' >> "$@"
-#echo "" >> "$@"
 
 # NOTE: If interested in cygwin, et. al. put this after the determination of script_dir:
 #case `uname` in
@@ -50,6 +43,8 @@ script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
 errcho() { echo "$@" 1>&2; }
 die() { errcho "$@"; exit 1; }
 ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
+announce() { underline=$(printf "%0.s=" $(seq 1 ${#1})); echo -e "\e[93m\n  $1\n  $underline\n\e[0m"; }
+
 
 
 EOF

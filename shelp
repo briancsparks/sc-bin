@@ -104,6 +104,8 @@ docker volume ls
 docker network ls
 docker plugin ls
 
+docker system prune --all --volumes
+
 -- Swarm
 docker service ls
 docker node ls

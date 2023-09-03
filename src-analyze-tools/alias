@@ -1,0 +1,29 @@
+#!/bin/bash -e
+
+ # For '###A' and the like, follow instructions and remove the leading space.
+ ###A one-line description
+
+ ###B longer description
+ ###B
+ ###B --including
+ ###B --flags           And descriptions for a usage statement
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
+
+COMMAND="sa"
+if [[ $# > 0 ]]; then
+  COMMAND="$1"
+  shift
+fi
+
+echo "alias $COMMAND='src-analyze'"
+
+for f in `ls $script_dir`; do
+  echo "alias $COMMAND$f='src-analyze $f'"
+  echo "alias $COMMAND-$f='src-analyze $f'"
+done
+
+

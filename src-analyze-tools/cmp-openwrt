@@ -1,0 +1,65 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+case `uname` in
+  *CYGWIN*|*MINGW*|*MSYS*) script_dir=`cygpath -w ${script_dir}`
+esac
+
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+ensurecmd() {
+  command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."
+}
+
+THIS_SRC=`pwd`
+OTHER_SRC="/home/brians/d/projects/rutx11-poc/from-teltonika/sdks/rutos-ipq40xx-rutx-gpl-07-04-5"
+OUTPUT_DIR="/tmp/cmp-openwrt"
+OUTPUT_FILE="$OUTPUT_DIR/diff-$$"
+TMP_DIFF="$OUTPUT_DIR/diff-file"
+
+echo "pid: $$"
+
+mkdir -p $OUTPUT_DIR
+
+for commit in $(git rev-list --all); do     # | head -100
+  git checkout $commit 2> /dev/null
+  commit_date=$(git show -s --format="%ci" $commit)
+
+  #echo "diff -r --exclude=".git" $OTHER_SRC $THIS_SRC"
+  #diff_lines=$(diff -r -w -Na --exclude=".git" $OTHER_SRC $THIS_SRC 2>&1 | wc -l)
+  #diff -r -w -Na --exclude=".git" $OTHER_SRC $THIS_SRC 2>&1 | cat - > $TMP_DIFF
+
+  #diff -r -w -Na --exclude=".git" $OTHER_SRC $THIS_SRC 2>&1 | cat - > "$TMP_DIFF-$commit"
+  #diff_lines=$(cat "$TMP_DIFF-$commit" | wc -l)
+
+  diff_lines=$(diff -r -w -Na --exclude=".git" $OTHER_SRC $THIS_SRC 2>&1 | wc -l)
+
+  echo "$commit_date, $commit, $diff_lines" | tee -a "$OUTPUT_FILE"
+done
+
+git checkout main 2> /dev/null
+
+ls -l $OUTPUT_DIR
+
+echo "pid: $$"
+echo "$OUTPUT_FILE"
+
+# NOTES
+# .../package/feeds/packages    - Lotsa available packages. Full source in OpenWRT (1380 packages); just soft links in Tlt (30 links)
+# .../package/feeds/luci        - Lotsa available packages. Full source in OpenWRT (162  packages); just soft links in Tlt (9  links)
+# .../package/feeds/vuci        - Only in Tlt. (204 vuci-*), (10 tlt_hotspot_theme)
+# .../package/feeds/routing     - Only in OpenWRT (31 links)
+# .../package/feeds/telephony   - Only in OpenWRT (38 links)
+#
+# All the 'links' above link back to the repo-root's feeds dir (i.e. .../openwrt/feeds/...)
+#
+# .../package/feeds             - Does not exist in OpenWRT in a src-only clone.
+#                               - Exists in Tlt as soft-links (but the pointed-to dirs/files do not exist.)
+#
+#
+# cat diff-* | egrep `cat -n diff-* | cut -d, -f 3 | sort -n | head -1`
+# cat diff-21022 | egrep `cat -n diff-21022 | cut -d, -f 3 | sort -n | head -1`
+
+
+
