@@ -1,0 +1,32 @@
+#!/bin/bash -ex
+
+script_dir="$(dirname "$(readlink -f "$0")")"
+
+[[ -n $LOCAL_HOME ]] || LOCAL_HOME="${HOME}"
+
+
+git config --global --add user.name           "Brian C Sparks"
+git config --global --add user.email          "briancsparks@gmail.com"
+git config --global --add push.default        "simple"
+git config --global --add color.ui            "auto"
+git config --global --add color.diff          "auto"
+git config --global --add color.diff.meta     "blue bold"
+git config --global --add color.diff.frag     "magenta bold"
+git config --global --add color.diff.old      "red bold"
+git config --global --add color.diff.new      "green bold"
+git config --global --add init.defaultbranch  "main"
+git config --global --add diff.tool           "meld"
+
+git config --global alias.l   'log --branches --tags --graph --oneline --decorate --notes HEAD'
+git config --global alias.ss  'status --short'
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.st status
+
+git config --global core.editor "vim"
+git config --global core.autocrlf input
+git config --global core.whitespace trailing-space,space-before-tab
+
+git config --global init.defaultBranch main
+
+git config --global core.excludesFile '~/.gitignore_global'
