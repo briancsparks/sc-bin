@@ -21,6 +21,11 @@ branchname() {
   git branch -a | egrep "$1" | head -1 | cut -d/ -f 3
 }
 
+glone() {
+  git clone git@github.com:Goddard-Technologies-LLC/ReprocessorAlpha ReprocessorAlpha$1
+  cd ReprocessorAlpha$1
+}
+
 
 #echo "._functions end"
 
