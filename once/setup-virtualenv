@@ -28,7 +28,7 @@ sudo apt-get install -y python3-distutils python3-tk python3.11-dev
 mkdir -p "$HOME/opt/venv"
 cd "$HOME/opt"
 curl -sL -O 'https://bootstrap.pypa.io/virtualenv.pyz'
-python3 virtualenv.pyz ./venv
+python3 virtualenv.pyz -p python3.11 ./venv
 ./venv/bin/pip install virtualenv
 
 # Make it available to the system

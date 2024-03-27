@@ -10,7 +10,6 @@ alias ls='ls --color=auto'
 
 alias showpath='echo $PATH | tr ":" "\n"'
 alias showenv='env | sort'
-alias pip='__check_pip '
 
 alias cls='printf "\ec"'
 alias chmox='chmod +x '

@@ -13,28 +13,6 @@ findbranch() {
   git branch -a | egrep "$1" | head -1 | cut -d/ -f 3
 }
 
-__check_pip() {
-  if [[ $1 == force ]]; then
-    local FORCE=1
-    shift
-  fi
-
-  if [[ $1 != install ]]; then
-    #echo "pip not installing - OK"
-    pip $@
-  elif [[ -z $VIRTUAL_ENV && -z $FORCE ]]; then
-    echo ""
-    echo "!!! Must be in a virtual env to pip-install. Use 'virtualenv' or 'vert'"
-    echo ""
-
-    return 9
-  else
-    #echo "pip install into venv - OK"
-    pip $@
-  fi
-  #echo "Done"
-}
-
 __gitbranch() {
   git branch 2> /dev/null | grep '^\*' | grep -o '[^ ]*$' | tail -1
 }
@@ -43,74 +21,6 @@ branchname() {
   git branch -a | egrep "$1" | head -1 | cut -d/ -f 3
 }
 
-vert_post_msg() {
-  echo ""
-  echo "---------- Now install any other packages like ----------"
-  echo ""
-  echo "pip install 'git+ssh://git@github.com/skysafe/echodyne'"
-  echo ""
-  echo "Then install..."
-  echo ""
-  echo "pip install -e '.[dev]'"
-  echo ""
-}
-
-do_vert() {
-  local GREEN_FG='\x1B[32m'
-  local RESET_FG='\x1B[0m'
-  local PVER="3.8"
-  local ENVR="venv"
-
-  if [[ $# > 0 ]]; then
-    PVER="$1"
-    shift
-  fi
-
-  if [[ $# > 0 ]]; then
-    ENVR="$1"
-    shift
-  fi
-
-  if [[ -d $ENVR ]]; then
-    source "$ENVR/bin/activate"
-    echo "---------- using existing virtualenv: $ENVR, python$PVER ----------"
-  else
-    echo "---------- virtualenv -p python$PVER $ENVR ----------"
-    virtualenv -p "python$PVER" "$ENVR" | sed "s/^/$GREEN_FG    /"
-    echo -e "$RESET_FG"
-    source "$ENVR/bin/activate"
-
-    echo '---------- pip install --upgrade pip wheel ----------'
-    pip install --upgrade pip wheel | sed "s/^/$GREEN_FG    /"
-    echo -e "$RESET_FG"
-  fi
-
-  if ! grep 'venv' .gitignore 2> /dev/null; then
-    echo "Adding 'venv' to .gitignore"
-    echo "venv" >> .gitignore
-  fi
-}
-
-vert_main() {
-  do_vert $@
-  vert_post_msg $@
-}
-
-vert() {
-  #local GITTOP="$(git rev-parse --show-toplevel)"
-  local BRANCH="$(__gitbranch)"
-  if [[ -n $BRANCH ]]; then
-    if [[ $BRANCH == main ]]; then
-      echo "On main branch! Switch branches or vert_main"
-    else
-      do_vert $@
-      vert_post_msg $@
-    fi
-  else
-    echo "Not a git repo."
-    do_vert $@
-  fi
-}
 
 #echo "._functions end"
 
