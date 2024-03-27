@@ -34,3 +34,20 @@ if [ -f "$HOME/.bash_aliases" ]; then
 fi
 # --- BCS End ------------------------------
 ```
+
+Run the one-time scripts:
+
+```shell
+~/sc-bin/once/setup-git
+```
+
+## More
+
+Password-less sudo:
+
+```shell
+sudo visudo
+
+# %sudo ALL=(ALL) NOPASSWD:ALL
+```
+
