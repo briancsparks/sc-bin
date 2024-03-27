@@ -44,6 +44,8 @@ alias treesm6='tree -L 6    -I '\''venv|node_modules|bower_components|ppds|_tmp|
 alias tree7='tree -L 7      -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build'\'''
 alias treesm7='tree -L 7    -I '\''venv|node_modules|bower_components|ppds|_tmp|cmake-build|doxygen-build|build'\'''
 
+alias nix-by-name='tree -L 2 "$HOME/dev/NixOS/nixpkgs/pkgs/by-name"'
+
 #alias duhs='for d in `ls`; do test -d $d && (cd $d; pwd; du -h | tail -1); sleep 0.2; done'
 #alias dus='for d in `ls`; do test -d $d && (cd $d; pwd; du | tail -1); sleep 0.2; done'
 alias duhs='for d in `ls`; do test -d && (cd $d; printf "%13s     %s  %s\n" `du -h | tail -1` `pwd`); sleep 0.2; done'
