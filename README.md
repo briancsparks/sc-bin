@@ -14,7 +14,7 @@ Run these:
 mkdir -p "$HOME/dev"
 cp "$HOME/sc-bin/.editorconfig" "$HOME/dev"
 cat "$HOME/sc-bin/dots/_functions" >> "$HOME/.functions"
-cat "$HOME/ac-bin/dots/_bash_aliases" >> "$HOME/.bash_aliases"
+cat "$HOME/sc-bin/dots/_bash_aliases" >> "$HOME/.bash_aliases"
 ```
 
 Then, put this into your `.profile`:
