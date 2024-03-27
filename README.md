@@ -23,6 +23,7 @@ Then, put this into your `.profile`:
 # --- BCS Begin ------------------------------
 if [ -d "$HOME/sc-bin" ]; then
   PATH="$HOME/sc-bin:$PATH"
+  PATH="$HOME/sc-bin/wip:$PATH"
 fi
 
 if [ -f "$HOME/.functions" ]; then
