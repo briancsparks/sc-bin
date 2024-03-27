@@ -26,6 +26,11 @@ if [ -d "$HOME/sc-bin" ]; then
   PATH="$HOME/sc-bin/wip:$PATH"
 fi
 
+if [ -f "$HOME/opt/venv/bin/activate" ]; then
+  . "$HOME/opt/venv/bin/activate"
+  echo 'Run `deactivate` to get out of the venv'
+fi
+
 if [ -f "$HOME/.functions" ]; then
   . "$HOME/.functions"
 fi
