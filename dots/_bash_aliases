@@ -1,7 +1,7 @@
 
 #echo "._bash_aliases start"
 
-alias gt='mcd dev/Goddard-Technologies-LLC/ReprocessorAlpha'
+alias gt='mcd ~/dev/Goddard-Technologies-LLC/ReprocessorAlpha'
 
 alias l='ls -CF'
 alias la='ls -A'
