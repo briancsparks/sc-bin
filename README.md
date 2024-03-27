@@ -39,6 +39,7 @@ Run the one-time scripts:
 
 ```shell
 ~/sc-bin/once/setup-git
+~/sc-bin/once/setup-vim
 ```
 
 ## More
