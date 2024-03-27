@@ -20,7 +20,7 @@ cat "$HOME/ac-bin/dots/_bash_aliases" "$HOME/.bash_aliases"
 Then, put this into your `.profile`:
 
 ```shell
-# --- BCS Begin
+# --- BCS Begin ------------------------------
 if [ -d "$HOME/sc-bin" ]; then
   PATH="$HOME/sc-bin:$PATH"
 fi
@@ -32,5 +32,5 @@ fi
 if [ -f "$HOME/.bash_aliases" ]; then
   . "$HOME/.bash_aliases"
 fi
-# --- BCS End
+# --- BCS End ------------------------------
 ```
