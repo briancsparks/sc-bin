@@ -26,6 +26,11 @@ glone() {
   cd ReprocessorAlpha$1
 }
 
+jcat() {
+  test -n "$1" && (cat "$1" | jq '.' ; exit)
+  test -f 'devbox.json' && cat devbox.json | jq '.'
+}
+
 
 #echo "._functions end"
 
