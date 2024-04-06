@@ -1,0 +1,27 @@
+
+
+# --- User Settings Start --------------------------------------
+
+#echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
+#echo "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
+
+# --- BCS Start ------------------------------------------------
+
+if [ -f "$HOME/.functions" ]; then
+  . "$HOME/.functions"
+fi
+
+# --- VENV: devbox -----------------------
+#echo 'eval "$(devbox global shellenv)"'
+#eval "$(devbox global shellenv)"
+
+# --- Starship prompt ---
+## Nerd Fonts
+#echo 'eval "$(starship init bash)"'
+#eval "$(starship init bash)"
+
+# --- BCS End -------------------------------------------------
+
+#echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
+#echo "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
+

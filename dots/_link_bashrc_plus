@@ -1,0 +1,14 @@
+
+# --- BCS Start ----------------------------
+
+if [ -f "$HOME/sc-bin/dots/_bashrc_plus" ]; then
+  . "$HOME/sc-bin/dots/_bashrc_plus"
+fi
+
+# --- BCS End ----------------------------
+
+# TODO: put this line at the top
+#echo "    ++++ .bashrc start"
+
+echo "    ---- .bashrc end"
+
