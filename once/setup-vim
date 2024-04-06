@@ -3,5 +3,5 @@
 scripts_dir="$(dirname "$(readlink -f "$0")")"
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-cat $scripts_dir/_vimrc > ${HOME}/.vimrc
+ln -s "$HOME/sc-bin/dots/_vimrc" "$HOME/.vimrc"
 vim +PluginInstall +qall
