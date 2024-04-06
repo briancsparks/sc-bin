@@ -7,6 +7,9 @@
 
 # --- BCS Start ------------------------------------------------
 
+export EDITOR='vim'
+exoirt VISUAL='vim'
+
 if [ -f "$HOME/.functions" ]; then
   . "$HOME/.functions"
 fi

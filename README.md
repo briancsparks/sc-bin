@@ -1,5 +1,7 @@
 # sc-bin
 
+TODO: Do you need `fdd`, `fnn` from gh:setup/delivered/bin?
+
 My scripts
 
 Clone this repo into `~/sc-bin`.

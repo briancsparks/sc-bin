@@ -15,6 +15,9 @@
 
 # --- BCS Begin ----------------------------
 
+export EDITOR='vim'
+exoirt VISUAL='vim'
+
 if [ -d "$HOME/sc-bin" ]; then
   PATH="$HOME/sc-bin:$PATH"
   PATH="$HOME/sc-bin/wip:$PATH"
