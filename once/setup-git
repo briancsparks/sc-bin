@@ -12,7 +12,9 @@ sudo mkdir -p -m 755 /etc/apt/keyrings \
   && sudo apt update \
   && sudo apt install git gh -y
 
+set +e
 ssh -o "StrictHostKeyChecking no" git@github.com
+set -e
 
 git config --global --add user.name           "Brian C Sparks"
 git config --global --add user.email          "briancsparks@gmail.com"

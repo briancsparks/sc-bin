@@ -1,4 +1,6 @@
 
+echo "    ++++ _profile_plus start"
+
 
 # --- User Settings Start --------------------------------------
 
@@ -16,7 +18,7 @@
 # --- BCS Begin ----------------------------
 
 export EDITOR='vim'
-exoirt VISUAL='vim'
+export VISUAL='vim'
 
 if [ -d "$HOME/sc-bin" ]; then
   PATH="$HOME/sc-bin:$PATH"
@@ -49,4 +51,6 @@ alias mcd="mcd_ "
 #echo "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
 
 # --- User Settings End --------------------------------------
+
+echo "    ---- _profile_plus end"
 

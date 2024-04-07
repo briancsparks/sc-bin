@@ -1,5 +1,7 @@
 
 
+echo "    ++++ _bashrc_plus start"
+
 # --- User Settings Start --------------------------------------
 
 #echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
@@ -8,7 +10,7 @@
 # --- BCS Start ------------------------------------------------
 
 export EDITOR='vim'
-exoirt VISUAL='vim'
+export VISUAL='vim'
 
 if [ -f "$HOME/.functions" ]; then
   . "$HOME/.functions"
@@ -27,4 +29,6 @@ fi
 
 #echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
 #echo "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
+
+echo "    ---- _bashrc_plus end"
 

@@ -15,13 +15,13 @@ ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not 
 announce() { underline=$(printf "%0.s=" $(seq 1 ${#1})); echo -e "\e[93m\n  $1\n  $underline\n\e[0m"; }
 
 mkdir -p "$HOME/dev"
-ln -s "$script_dir/dots/_editorconfig" "$HOME/dev/.editorconfig"
+ln -s "$script_dir/../dots/_editorconfig" "$HOME/dev/.editorconfig"
 
-ln -s "$script_dir/dots/_functions" "$HOME/.functions"
-ln -s "$script_dir/dots/_bash_aliases" "$HOME/.bash_aliases"
+ln -s "$script_dir/../dots/_functions" "$HOME/.functions"
+ln -s "$script_dir/../dots/_bash_aliases" "$HOME/.bash_aliases"
 
-cat "$script_dir/dots/_link_bashrc_plus" >> "$HOME/.bashrc"
-cat "$script_dir/dots/_link_profile_plus" >> "$HOME/.profile"
+cat "$script_dir/../dots/_link_bashrc_plus" >> "$HOME/.bashrc"
+cat "$script_dir/../dots/_link_profile_plus" >> "$HOME/.profile"
 
 echo "Open bashrc and profile and move the logging that those files are running to the top"
 
