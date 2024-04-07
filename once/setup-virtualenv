@@ -22,17 +22,26 @@ announce() { underline=$(printf "%0.s=" $(seq 1 ${#1})); echo -e "\e[93m\n  $1\n
 # to put per-project ones anywhere, as well as other globals.
 
 # Install whatever Python version(s) we will be using in these venvs.
-sudo apt-get install -y python3-distutils python3-tk python3.11-dev
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt update
+sudo apt-get install -y python3-distutils
+sudo apt-get install -y python3.12 python3.12-dev
+sudo apt-get install -y python3.11 python3.11-dev
 
 # Get the virtualenv 'pyz'
-mkdir -p "$HOME/opt/venv"
+mkdir -p "$HOME/opt/env0"
 cd "$HOME/opt"
 curl -sL -O 'https://bootstrap.pypa.io/virtualenv.pyz'
-python3 virtualenv.pyz -p python3.11 ./venv
-./venv/bin/pip install virtualenv
+python3 virtualenv.pyz -p python3.12 ./env0
+./env0/bin/pip install virtualenv
 
 # Make it available to the system
 cd
 mkdir -p .local/bin
-ln -s "$HOME/opt/venv/bin/virtualenv" .local/bin/virtualenv
+ln -s "$HOME/opt/env0/bin/virtualenv" .local/bin/virtualenv
+
+# Make a development-specific 'global' venv
+virtualenv -p python3.12 ~/opt/devenv
+
 
