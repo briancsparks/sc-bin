@@ -1,7 +1,6 @@
 
 echo "    ++++ _profile_plus start"
 
-
 # --- User Settings Start --------------------------------------
 
 #echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
@@ -9,11 +8,10 @@ echo "    ++++ _profile_plus start"
 
 # --- VENV: NixPkgs -----------------------
 ## ADDED by Nix
-#if [ -e /home/brian/.nix-profile/etc/profile.d/nix.sh ]; then
-#  echo source /home/brian/.nix-profile/etc/profile.d/nix.sh;
-#  . /home/brian/.nix-profile/etc/profile.d/nix.sh;
-#fi # added by Nix installer
-
+if [ -e /home/bsparks/.nix-profile/etc/profile.d/nix.sh ]; then
+  echo source /home/bsparks/.nix-profile/etc/profile.d/nix.sh;
+  . /home/bsparks/.nix-profile/etc/profile.d/nix.sh;
+fi # added by Nix installer
 
 # --- BCS Begin ----------------------------
 
@@ -26,17 +24,11 @@ if [ -d "$HOME/sc-bin" ]; then
 fi
 
 # --- VENV: BCS ----------------------------
-if [ -f "$HOME/opt/venv/bin/activate" ]; then
-  echo source "$HOME/opt/venv/bin/activate"
-  source "$HOME/opt/venv/bin/activate"
-  echo 'Run `deactivate` to get out of the venv'
+if [ -f "$HOME/opt/devenv/bin/activate" ]; then
+  echo source "$HOME/opt/devenv/bin/activate"
+  source "$HOME/opt/devenv/bin/activate"
+  echo 'Run `deactivate` to get out of the devenv'
 fi
-
-#if [ -f "$HOME/opt/genv/bin/activate" ]; then
-#  echo source "$HOME/opt/genv/bin/activate"
-#  . "$HOME/opt/genv/bin/activate"
-#  echo 'Run `deactivate` to get out of the venv'
-#fi
 
 # mcd
 function mcd_() {

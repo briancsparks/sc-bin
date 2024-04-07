@@ -44,4 +44,5 @@ ln -s "$HOME/opt/env0/bin/virtualenv" .local/bin/virtualenv
 # Make a development-specific 'global' venv
 virtualenv -p python3.12 ~/opt/devenv
 
+echo "now, point to ~/opt/devenv/bin/activate from your profile"
 
