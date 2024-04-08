@@ -2,6 +2,11 @@
 
 scripts_dir="$(dirname "$(readlink -f "$0")")"
 
+mkdir -p "$HOME/.vim/bundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+mkdir -p "$HOME/.vim/pack/plugins/start"
+git clone https://github.com/ziglang/zig.vim "$HOME/.vim/pack/plugins/start"
+
 ln -s "$HOME/sc-bin/dots/_vimrc" "$HOME/.vimrc"
 vim +PluginInstall +qall
