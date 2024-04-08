@@ -79,7 +79,10 @@ filetype plugin indent on    " required
 :set ruler
 :set clipboard=unnamed
 
-"" Suggested by Ctrl+Space v5 -- NO WAY
+" ----- Zig -- NO WAY -----
+let g:zig_fmt_autosave = 0
+
+" ----- Ctrl+Space v5 -- NO WAY -----
 ":set showtabline=0
 
 ":set autoread
