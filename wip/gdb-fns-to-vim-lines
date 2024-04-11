@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+import sys
+import re
+
+def extract_filename(line):
+    """
+    Extracts the filename from a line, assuming the filename is the last part of the line
+    before a colon and contains no spaces. Removes any non-filename prefixes.
+    """
+    if line.endswith(':'):
+        # Split the line at spaces and take the last part as the filename, removing the colon
+        parts = line.split()
+        filename = parts[-1].rstrip(':')
+        return filename
+    return None
+
+def is_detail_line(line):
+    """
+    Determines if the line is a detail line using a regular expression to check if it starts
+    with a number followed by a colon.
+    """
+    return re.match(r"^\d+:", line.strip()) is not None
+
+def is_blank_line(line):
+    """
+    Checks if the line is blank.
+    """
+    return not line.strip()
+
+def format_for_vim(input_stream):
+    current_filename = None
+    for line in input_stream:
+        line = line.rstrip()  # Remove trailing newline
+
+        # Check for blank line and reset filename if found
+        if is_blank_line(line):
+            current_filename = None
+            continue
+
+        potential_filename = extract_filename(line)
+        if potential_filename:
+            current_filename = potential_filename
+        elif current_filename and line and is_detail_line(line):
+            # Print the formatted line only if we have a valid filename, the line is not empty, and it starts with a number followed by a colon
+            print(f"{current_filename}:{line}")
+
+if __name__ == "__main__":
+    format_for_vim(sys.stdin)
+
