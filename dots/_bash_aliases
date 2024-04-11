@@ -3,6 +3,8 @@
 
 alias gt='mcd ~/dev/Goddard-Technologies-LLC/ReprocessorAlpha'
 
+alias c='clear'
+
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
