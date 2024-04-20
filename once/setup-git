@@ -27,6 +27,7 @@ git config --global --add color.diff.old      "red bold"
 git config --global --add color.diff.new      "green bold"
 git config --global --add init.defaultbranch  "main"
 git config --global --add diff.tool           "meld"
+git config --global       difftool.prompt     false
 
 git config --global alias.l   'log --branches --tags --graph --oneline --decorate --notes HEAD'
 git config --global alias.ss  'status --short'
