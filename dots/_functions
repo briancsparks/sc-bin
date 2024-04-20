@@ -21,6 +21,11 @@ branchname() {
   git branch -a | egrep "$1" | head -1 | cut -d/ -f 3
 }
 
+#__mcd() {
+#  mkdir -p $1
+#  cd $1
+#}
+
 glone() {
   git clone git@github.com:Goddard-Technologies-LLC/ReprocessorAlpha ReprocessorAlpha$1
   cd ReprocessorAlpha$1
@@ -28,7 +33,8 @@ glone() {
 
 jcat() {
   test -n "$1" && (cat "$1" | jq '.' ; exit)
-  test -f 'devbox.json' && cat devbox.json | jq '.'
+  test -f 'devbox.json' && (cat devbox.json | jq '.' ; exit)
+  test -f 'package.json' && (cat package.json | jq '.' ; exit)
 }
 
 

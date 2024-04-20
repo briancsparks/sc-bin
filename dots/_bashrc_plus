@@ -16,6 +16,24 @@ if [ -f "$HOME/.functions" ]; then
   . "$HOME/.functions"
 fi
 
+# --- VENV: BCS ----------------------------
+if [ -f "$HOME/opt/genv/bin/activate" ]; then
+  #echo 'To get the global venv:'
+  echo source "$HOME/opt/genv/bin/activate"
+  source "$HOME/opt/genv/bin/activate"
+  echo 'Run `deactivate` to get out of the genv'
+fi
+
+
+# mcd
+__mcd() {
+  mkdir -p $1
+  cd $1
+}
+alias mcd="__mcd "
+
+# --- BCS End ----------------------------
+
 # --- VENV: devbox -----------------------
 #echo 'eval "$(devbox global shellenv)"'
 #eval "$(devbox global shellenv)"

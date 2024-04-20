@@ -23,13 +23,6 @@ if [ -d "$HOME/sc-bin" ]; then
   PATH="$HOME/sc-bin/wip:$PATH"
 fi
 
-# --- VENV: BCS ----------------------------
-if [ -f "$HOME/opt/devenv/bin/activate" ]; then
-  echo source "$HOME/opt/devenv/bin/activate"
-  source "$HOME/opt/devenv/bin/activate"
-  echo 'Run `deactivate` to get out of the devenv'
-fi
-
 # mcd
 function mcd_() {
   mkdir -p $1

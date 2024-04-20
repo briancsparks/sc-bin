@@ -1,7 +1,9 @@
 
 #echo "._bash_aliases start"
 
-alias gt='mcd ~/dev/Goddard-Technologies-LLC/ReprocessorAlpha'
+alias gt='mcd ~/dev/goddard/aurie'
+alias dx='devbox'
+alias c='clear'
 
 alias c='clear'
 
