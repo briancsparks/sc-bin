@@ -23,6 +23,8 @@ alias vcat='vimcat'
 
 alias ssh='ssh -A '
 alias vim='vim -p'
+alias nvim='nvim -p'
+alias nv='nvim -p'
 
 alias  vim-shelp-files='vim -p $HOME/sc-bin/shelp $HOME/sc-bin/snippets/*'
 alias vim-config-files='vim -p $HOME/.profile $HOME/.bashrc $HOME/.bash_aliases $HOME/.functions $HOME/sc-bin/dots/* $HOME/bin/setprompt'

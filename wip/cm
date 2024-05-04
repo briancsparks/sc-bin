@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Function to display usage information
+usage() {
+    echo "Usage: cm [OPTION] [BUILD_OPTIONS]"
+    echo "Build the Aurie project using CMake and run the specified target."
+    echo
+    echo "Options:"
+    echo "  (no option)   Build the project and run the default target"
+    echo "  r             Build the project and run aurie.out with the provided arguments"
+    echo "  s             Build the project and run smoke tests"
+    echo "  t             Build the project and run unit tests"
+    echo
+    echo "Build Options:"
+    echo "  --rm          Remove the build directory before building"
+    echo "  --asan        Enable Address Sanitizer"
+    echo "  --verbose-makefile  Enable verbose makefile output"
+    echo "  0             Disable running make after CMake"
+    echo "  (other)       Pass the option directly to the CMake command"
+    echo
+    echo "Examples:"
+    echo "  cm                      Build the project and run the default target"
+    echo "  cm r                    Build the project and run aurie.out"
+    echo "  cm s --asan             Build the project with ASAN and run smoke tests"
+    echo "  cm t --rm --verbose-makefile  Remove the build directory, rebuild with verbose makefile, and run unit tests"
+}
+
+# Check if scripts/workstation-build script exists and is executable
+if [ ! -x "scripts/workstation-build" ]; then
+    echo "Error: scripts/workstation-build script not found or not executable"
+    exit 1
+fi
+
+# Extract the first argument (r, s, t, or none)
+case $1 in
+    r|s|t)
+    TARGET=$1
+    shift
+    ;;
+    *)
+    TARGET=""
+    ;;
+esac
+
+# Call the scripts/workstation-build script with the remaining arguments
+scripts/workstation-build "$@"
+
+# Check the exit code of scripts/workstation-build
+if [ $? -ne 0 ]; then
+    echo "Error: scripts/workstation-build script failed"
+    exit 1
+fi
+
+# Call the mk script with the target argument
+case $TARGET in
+    r|s|t)
+    mk "$TARGET"
+    ;;
+    *)
+    mk
+    ;;
+esac
+
+# Exit with the same exit code as the mk script
+exit $?
+
