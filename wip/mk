@@ -68,11 +68,14 @@ case $1 in
       ./build-workstation/aurie.out "$@"
       EXIT_CODE=$?
       if [ $EXIT_CODE -eq 0 ]; then
-          echo "Success: aurie.out executed successfully"
+          echo ""
+          echo "      Success"
+          echo ""
       else
-          echo "FAILURE!"
-          echo "aurie.out failed with exit code: $EXIT_CODE"
-          echo "Please check the logs for more details"
+          echo ""
+          echo ""
+          echo "      FAIL! Simulator failed with exit code: $EXIT_CODE"
+          echo ""
       fi
       exit $EXIT_CODE
       ;;
@@ -90,11 +93,11 @@ case $1 in
           echo ""
           echo "      Success"
           echo ""
-          #echo "Success: Smoke test passed"
       else
-          echo "FAILURE!"
-          echo "Smoke test failed with exit code: $EXIT_CODE"
-          echo "Please check the logs for more details"
+          echo ""
+          echo ""
+          echo "      FAIL! Smoke tests failed with exit code: $EXIT_CODE"
+          echo ""
       fi
       exit $EXIT_CODE
       ;;
@@ -104,20 +107,24 @@ case $1 in
     # Run unit tests
 
     t)
+      shift
       if [ ! -x "./build-workstation/tests/unit_tests" ]; then
           echo "Error: unit_tests not found or not executable"
           echo "Please ensure that the build completed successfully"
           exit 1
       fi
 
-      ./build-workstation/tests/unit_tests
+      ./build-workstation/tests/unit_tests -s "$@"
       EXIT_CODE=$?
       if [ $EXIT_CODE -eq 0 ]; then
-          echo "Success: Unit tests passed"
+          echo ""
+          echo "      Success"
+          echo ""
       else
-          echo "FAILURE!"
-          echo "Unit tests failed with exit code: $EXIT_CODE"
-          echo "Please check the logs for more details"
+          echo ""
+          echo ""
+          echo "      FAIL! Unit tests failed with exit code: $EXIT_CODE"
+          echo ""
       fi
       exit $EXIT_CODE
       ;;

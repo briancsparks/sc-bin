@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+
+go run "${script_dir}/mmk.go" "$@"
+

@@ -1,6 +1,7 @@
 
 #echo "._bash_aliases start"
 
+alias ghclone='git clone --recurse-submodules git@github.com:${GH_USER}/${GH_PROJECT}'
 alias gt='mcd ~/dev/goddard/aurie'
 alias dx='devbox'
 alias c='clear'

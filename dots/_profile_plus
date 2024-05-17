@@ -30,6 +30,10 @@ function mcd_() {
 }
 alias mcd="mcd_ "
 
+if [ -f "$HOME/_profile_local" ]; then
+  . "$HOME/_profile_local"
+fi
+
 # --- BCS End ----------------------------
 
 #echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
