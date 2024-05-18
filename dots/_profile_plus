@@ -23,6 +23,10 @@ if [ -d "$HOME/sc-bin" ]; then
   PATH="$HOME/sc-bin/wip:$PATH"
 fi
 
+if [ -d "$HOME/devtools" ]; then
+  PATH="$HOME/devtools:$PATH"
+fi
+
 # mcd
 function mcd_() {
   mkdir -p $1

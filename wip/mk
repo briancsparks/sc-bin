@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # TODO: smartly do either a workstation make or a device make, which would be a manual make
 
@@ -55,6 +55,8 @@ case $1 in
     clean) scripts/workstation-make clean; exit $?   ;;
     *)     scripts/workstation-make                  ;;
 esac
+
+set +e
 
 # Handle different arguments
 case $1 in

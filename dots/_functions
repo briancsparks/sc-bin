@@ -31,6 +31,10 @@ glone() {
   cd ReprocessorAlpha$1
 }
 
+ghuclone() {
+  git clone --recurse-submodules "git@github.com:${GH_USER}/$1" "$@"
+}
+
 jcat() {
   test -n "$1" && (cat "$1" | jq '.' ; exit)
   test -f 'devbox.json' && (cat devbox.json | jq '.' ; exit)
