@@ -1,3 +1,3 @@
-#!/bin/bash
-# format-default: Format files with 2-space indentation
+#!/bin/bash -e
+# Format files with 2-space indentation
 perl -pi -e 's/\t/  /g; s/\s+$//; if (eof && !/$/) {print "\n"}' "$@"

@@ -1,3 +1,0 @@
-#!/bin/bash
-# format-kernel: Format kernel-style files with 8-space indentation
-perl -pi -e 's/\t/        /g; s/\s+$//; if (eof && !/$/) {print "\n"}' "$@"
