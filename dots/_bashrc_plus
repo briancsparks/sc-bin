@@ -1,6 +1,6 @@
 
 
-echo "    ++++ _bashrc_plus start"
+#echo "    ++++ _bashrc_plus start"
 
 # --- User Settings Start --------------------------------------
 
@@ -48,5 +48,5 @@ alias mcd="__mcd "
 #echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
 #echo "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
 
-echo "    ---- _bashrc_plus end"
+#echo "    ---- _bashrc_plus end"
 

@@ -17,7 +17,7 @@ announce() { underline=$(printf "%0.s=" $(seq 1 ${#1})); echo -e "\e[93m\n  $1\n
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y openssh-server curl git htop jq silversearcher-ag vim
-sudo update-alternatives --set editor /usr/bin/vim.basic
+#sudo update-alternatives --set editor /usr/bin/vim.basic
 
 service ssh status
 sudo service ssh restart

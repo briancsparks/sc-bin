@@ -21,6 +21,7 @@ alias showenv='env | sort'
 alias cls='printf "\ec"'
 alias chmox='chmod +x '
 alias vcat='vimcat'
+alias bat='batcat'
 
 alias ssh='ssh -A '
 alias vim='vim -p'

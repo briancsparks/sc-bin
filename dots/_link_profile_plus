@@ -1,4 +1,6 @@
 
+#echo "    ++++ .profile start"
+
 # --- BCS Start ----------------------------
 
 if [ -f "$HOME/sc-bin/dots/_profile_plus" ]; then
@@ -7,8 +9,5 @@ fi
 
 # --- BCS End ----------------------------
 
-# TODO: put this line at the top of ~/.profile
-#echo "    ++++ .profile start"
-
-echo "    ---- .profile end"
+#echo "    ---- .profile end"
 
