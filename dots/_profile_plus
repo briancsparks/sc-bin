@@ -1,15 +1,23 @@
 
-echo "    ++++ _profile_plus start"
+# only echo in interactive login shells
+_rc_echo_pp() {
+  if [ -n "$SSH_CLIENT" ] && [ -z "$PS1" ]; then
+    return
+  fi
+  echo "$@"
+}
+
+_rc_echo_pp "    ++++ _profile_plus start"
 
 # --- User Settings Start --------------------------------------
 
-#echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
-#echo "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
+#_rc_echo_pp "VIRTUAL_ENV: ${VIRTUAL_ENV}"
+#_rc_echo_pp "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
 
 # --- VENV: NixPkgs -----------------------
 ## ADDED by Nix
 if [ -e /home/bsparks/.nix-profile/etc/profile.d/nix.sh ]; then
-  echo source /home/bsparks/.nix-profile/etc/profile.d/nix.sh;
+  _rc_echo_pp source /home/bsparks/.nix-profile/etc/profile.d/nix.sh;
   . /home/bsparks/.nix-profile/etc/profile.d/nix.sh;
 fi # added by Nix installer
 
@@ -40,10 +48,10 @@ fi
 
 # --- BCS End ----------------------------
 
-#echo "VIRTUAL_ENV: ${VIRTUAL_ENV}"
-#echo "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
+#_rc_echo_pp "VIRTUAL_ENV: ${VIRTUAL_ENV}"
+#_rc_echo_pp "VIRTUAL_ENV_PROMPT: ${VIRTUAL_ENV_PROMPT}"
 
 # --- User Settings End --------------------------------------
 
-echo "    ---- _profile_plus end"
+_rc_echo_pp "    ---- _profile_plus end"
 

@@ -1,6 +1,18 @@
 
 #echo "._functions start"
 
+pip() {
+  if [ -z "$VIRTUAL_ENV" ]; then
+      echo "Error: Not in a virtual environment!"
+      echo "Please activate a virtual environment first:"
+      echo "  pydef                          # your default environment"
+      echo "  source /path/to/venv/bin/activate   # any other environment"
+      return 1
+  else
+      command pip "$@"
+  fi
+}
+
 function display_info() {
   # TODO: add: git branch | egrep '^\*' | cut -d' ' -f2
 
