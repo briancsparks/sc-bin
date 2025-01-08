@@ -54,4 +54,4 @@ fi
 # --- User Settings End --------------------------------------
 
 _rc_echo_pp "    ---- _profile_plus end"
-
+unset -f _rc_echo_pp
