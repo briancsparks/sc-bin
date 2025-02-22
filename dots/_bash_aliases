@@ -6,8 +6,9 @@ alias gt='mcd ~/dev/goddard/aurie'
 alias dx='devbox'
 alias c='clear'
 
-alias pydef='source ~/opt/python/default/bin/activate'
 alias condef='conda activate base'
+alias pydef='source ~/opt/python/default/bin/activate'
+alias mkvenv='__mkvenv ; source .venv/bin/activate'
 
 alias l='ls -CF'
 alias la='ls -A'

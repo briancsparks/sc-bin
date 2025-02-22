@@ -1,6 +1,24 @@
 
 #echo "._functions start"
 
+__mkvenv() {
+  if [ -z "$VIRTUAL_ENV" ]; then
+      echo "Error: Not in a virtual environment!"
+      echo "Would you like me to use your default venv at ~/opt/python/default? (y/n)"
+      read -r response
+      if [[ "$response" =~ ^[Yy] ]]; then
+          ~/opt/python/default/bin/python3 -m venv .venv
+      else
+          echo "Operation cancelled. Please activate a virtual environment first:"
+          echo "  pydef                          # your default environment"
+          echo "  source /path/to/venv/bin/activate   # any other environment"
+          return 1
+      fi
+  else
+      python3 -m venv .venv
+  fi
+}
+
 pip() {
   if [ -z "$VIRTUAL_ENV" ]; then
       echo "Error: Not in a virtual environment!"
