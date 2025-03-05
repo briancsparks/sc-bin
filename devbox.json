@@ -1,0 +1,21 @@
+{
+  "$schema":  "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
+  "packages": ["python3@latest"],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null",
+      "source $HOME/sc-bin/dots/_pathrc",
+      "source .venv/bin/activate"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ],
+      "mk0": [
+        "source $HOME/sc-bin/dots/_pathrc",
+        "source $HOME/sc-bin/.venv/bin/activate",
+        "ipython ./wip/mk.ipy"
+      ]
+    }
+  }
+}

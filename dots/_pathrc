@@ -33,14 +33,18 @@ export PATH=$PATH:$GOPATH/bin
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+if [ -n "$PS1" ]; then
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
 
 # Deno
 export DENO_INSTALL="/home/$USER/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 . "/home/brian/.deno/env"
-source /home/brian/.local/share/bash-completion/completions/deno.bash
+if [ -n "$PS1" ]; then
+  source /home/brian/.local/share/bash-completion/completions/deno.bash
+fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
