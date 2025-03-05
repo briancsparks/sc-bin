@@ -1,0 +1,83 @@
+
+# only echo in interactive login shells
+_rc_echo_prc() {
+  if [ -n "$SSH_CLIENT" ] && [ -z "$PS1" ]; then
+    return
+  fi
+  echo "$@"
+}
+
+_rc_echo_prc "    ++++ .pathrc start"
+
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Added by Toolbox App
+export PATH="$PATH:/home/brian/.local/share/JetBrains/Toolbox/scripts"
+#
+# --- BCS manually added START ---
+
+# Go
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Deno
+export DENO_INSTALL="/home/$USER/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+. "/home/brian/.deno/env"
+source /home/brian/.local/share/bash-completion/completions/deno.bash
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export VCPKG_ROOT=${HOME}/dev/vcpkg
+export PATH=${VCPKG_ROOT}:$PATH
+
+# --- BCS manually added END ---
+
+
+# --- BCS Begin ----------------------------
+
+export EDITOR='vim'
+export VISUAL='vim'
+
+if [ -d "$HOME/sc-bin" ]; then
+  PATH="$HOME/sc-bin:$PATH"
+  PATH="$HOME/sc-bin/wip:$PATH"
+fi
+
+if [ -d "$HOME/devtools" ]; then
+  PATH="$HOME/devtools:$PATH"
+fi
+
+# mcd
+function mcd_() {
+  mkdir -p $1
+  cd $1
+}
+alias mcd="mcd_ "
+
+if [ -f "$HOME/_profile_local" ]; then
+  . "$HOME/_profile_local"
+fi
+
+# --- BCS End ----------------------------
+
+_rc_echo_prc "    ---- .pathrc end"
+unset -f _rc_echo_prc

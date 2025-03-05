@@ -1,0 +1,19 @@
+#!/usr/bin/env ipython
+
+from pathlib import Path
+
+build_dir = Path("build")
+build_type = "Debug"
+
+print(f"build_dir: {build_dir}")
+
+# Eventually, if user chooses
+# !rm -rf {build_dir}
+# !mkdir -p {build_dir}
+
+!cmake -S . -B {build_dir} -DCMAKE_BUILD_TYPE={build_type} -DCMAKE_TOOLCHAIN_FILE=cmake/ClangToolchain.cmake
+
+!cmake --build {build_dir} -j$(nproc)
+
+
+

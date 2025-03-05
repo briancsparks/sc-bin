@@ -32,10 +32,13 @@ pip() {
 }
 
 function display_info() {
-  # TODO: add: git branch | egrep '^\*' | cut -d' ' -f2
-
   # Simley / Frowny
   local success="$?"
+
+  # TODO: add: git branch | egrep '^\*' | cut -d' ' -f2
+  local YELLOW=$(tput setaf 3)
+  local RESET=$(tput sgr0)
+  local BOLD=$(tput bold)
 
   # Git status
   if git rev-parse --is-inside-work_tree &> /dev/null; then
@@ -46,6 +49,30 @@ function display_info() {
       echo -n "[${BRANCH}] "
     fi
   fi
+
+  # Devbox env -- if we are in a devbox-managed repo, we should be in a 'devbox shell'
+  if [[ -f "devbox.json" && -z "$DEVBOX_SHELL_ENABLED" ]]; then
+    echo -n " ${BOLD}${YELLOW}[NEED DEVBOX] :<  :<  :<  :< ${RESET} "  # or 🔧 or whatever indicator you prefer
+  fi
+
+  # Python env
+  if [[ -f "pyproject.toml" || -f "poetry.lock" ]]; then
+    # Poetry project
+    if [[ -z "$POETRY_ACTIVE" ]]; then
+      echo -n " ${BOLD}${YELLOW}[NEED POETRY] :<  :<  :<  :< ${RESET} "
+    fi
+  elif [[ -f "Pipfile" || -f "Pipfile.lock" ]]; then
+    # Pipenv project
+    if [[ -z "$PIPENV_ACTIVE" ]]; then
+      echo -n " ${BOLD}${YELLOW}[NEED PIPENV] :<  :<  :<  :< ${RESET} "
+    fi
+  elif [[ -f "requirements.txt" || -f "setup.py" ]]; then
+    # Traditional venv project
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+      echo -n " ${BOLD}${YELLOW}[NEED VENV] :<  :<  :<  :< ${RESET} "
+    fi
+  fi
+
 
   # Success??   :)  vs  :(
   if [[ $success -eq 0 ]]; then
