@@ -10,11 +10,6 @@
     "scripts": {
       "test": [
         "echo \"Error: no test specified\" && exit 1"
-      ],
-      "mk0": [
-        "source $HOME/sc-bin/dots/_pathrc",
-        "source $HOME/sc-bin/.venv/bin/activate",
-        "ipython ./wip/mk.ipy"
       ]
     }
   }
