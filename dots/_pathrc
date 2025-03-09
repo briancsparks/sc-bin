@@ -9,26 +9,51 @@ _rc_echo_prc() {
 
 _rc_echo_prc "    ++++ .pathrc start"
 
+# ----------- add to PATH, without dups ---------------
+add_to_path() {
+  local dir="$1"
+  # Check if directory exists
+  if [ -d "$dir" ]; then
+    # Check if directory is not already in PATH
+    if [[ ":$PATH:" != *":$dir:"* ]]; then
+      export PATH="$dir:$PATH"
+      #echo "Added $dir to PATH"
+    #else
+      #echo "$dir is already in PATH"
+    fi
+  #else
+    #echo "Directory $dir does not exist"
+  fi
+}
+
+# Usage
+#add_to_path "/path/to/add"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    #PATH="$HOME/bin:$PATH"
+    add_to_path "$HOME/bin"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+    #PATH="$HOME/.local/bin:$PATH"
+    add_to_path "$HOME/.local/bin"
 fi
 
 # Added by Toolbox App
-export PATH="$PATH:/home/brian/.local/share/JetBrains/Toolbox/scripts"
+#export PATH="$PATH:/home/brian/.local/share/JetBrains/Toolbox/scripts"
+add_to_path "/home/brian/.local/share/JetBrains/Toolbox/scripts"
+
 #
 # --- BCS manually added START ---
 
 # Go
-export PATH=$PATH:/usr/local/go/bin
+#export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+#export PATH=$PATH:$GOPATH/bin
+add_to_path /usr/local/go/bin
+add_to_path $GOPATH/bin
 
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
@@ -39,7 +64,8 @@ fi
 
 # Deno
 export DENO_INSTALL="/home/$USER/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+#export PATH="$DENO_INSTALL/bin:$PATH"
+add_to_path "$DENO_INSTALL/bin"
 
 . "/home/brian/.deno/env"
 if [ -n "$PS1" ]; then
@@ -48,10 +74,12 @@ fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+#export PATH="$BUN_INSTALL/bin:$PATH"
+add_to_path "$BUN_INSTALL/bin"
 
 export VCPKG_ROOT=${HOME}/dev/vcpkg
-export PATH=${VCPKG_ROOT}:$PATH
+#export PATH=${VCPKG_ROOT}:$PATH
+add_to_path {VCPKG_ROOT}
 
 # --- BCS manually added END ---
 
@@ -62,12 +90,15 @@ export EDITOR='vim'
 export VISUAL='vim'
 
 if [ -d "$HOME/sc-bin" ]; then
-  PATH="$HOME/sc-bin:$PATH"
-  PATH="$HOME/sc-bin/wip:$PATH"
+  #PATH="$HOME/sc-bin:$PATH"
+  #PATH="$HOME/sc-bin/wip:$PATH"
+  add_to_path "$HOME/sc-bin"
+  add_to_path "$HOME/sc-bin/wip"
 fi
 
 if [ -d "$HOME/devtools" ]; then
-  PATH="$HOME/devtools:$PATH"
+  #PATH="$HOME/devtools:$PATH"
+  add_to_path "$HOME/devtools"
 fi
 
 # mcd

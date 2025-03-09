@@ -26,14 +26,14 @@ fi # added by Nix installer
 export EDITOR='vim'
 export VISUAL='vim'
 
-if [ -d "$HOME/sc-bin" ]; then
-  PATH="$HOME/sc-bin:$PATH"
-  PATH="$HOME/sc-bin/wip:$PATH"
-fi
-
-if [ -d "$HOME/devtools" ]; then
-  PATH="$HOME/devtools:$PATH"
-fi
+#if [ -d "$HOME/sc-bin" ]; then
+#  PATH="$HOME/sc-bin:$PATH"
+#  PATH="$HOME/sc-bin/wip:$PATH"
+#fi
+#
+#if [ -d "$HOME/devtools" ]; then
+#  PATH="$HOME/devtools:$PATH"
+#fi
 
 # mcd
 function mcd_() {

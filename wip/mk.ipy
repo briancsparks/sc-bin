@@ -1,17 +1,21 @@
 #!/usr/bin/env ipython
 
+# TODO: Parse CLI params.
+# TODO: Compound build dirs; rm -rf build/; All 4 CMake build types.
+# TODO: Also run tests
+
 from pathlib import Path
 
 build_dir = Path("build")
 build_type = "Debug"
 
-print(f"build_dir: {build_dir}")
+#print(f"build_dir: {build_dir}")
 
 # Eventually, if user chooses
 # !rm -rf {build_dir}
 # !mkdir -p {build_dir}
 
-!cmake -S . -B {build_dir} -DCMAKE_BUILD_TYPE={build_type} -DCMAKE_TOOLCHAIN_FILE=cmake/ClangToolchain.cmake
+!cmake -S . -B {build_dir} -G Ninja -DCMAKE_BUILD_TYPE={build_type} -DCMAKE_TOOLCHAIN_FILE=cmake/ClangToolchain.cmake
 
 !cmake --build {build_dir} -j$(nproc)
 
