@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+#username_repo="$(gh repo view --json nameWithOwner -q .nameWithOwner)"
+username_repo="$(git config --get remote.origin.url | cut -d : -f 2 | cut -d '.' -f 1)"
+
+echo gh repo edit "$username_repo" --visibility=private --accept-visibility-change-consequences
+gh repo edit "$username_repo" --visibility=private --accept-visibility-change-consequences
+
+echo gh api -X PATCH "repos/$username_repo" -f archived=true -q .archived
+gh api -X PATCH "repos/$username_repo" -f archived=true -q .archived
+
+
