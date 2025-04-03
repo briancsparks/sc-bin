@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+###A common utility functions for scripts
+
+# Basic utilities
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+ensurecmd() { command -v $1 > /dev/null 2>&1 || die "$1 is required, but is not in PATH."; }
+announce() { underline=$(printf "%0.s=" $(seq 1 ${#1})); echo -e "\e[93m\n  $1\n  $underline\n\e[0m"; }
+
+# Usage helper
+usage() {
+  errcho "$@"
+  errcho ""
+  errcho "Usage: $(basename $0) [options]"
+}
+
+# Check if script is being run or sourced
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  # This file is being executed, not sourced
+  errcho "This file is meant to be sourced, not executed directly."
+  errcho "Use: source \"$(basename \"${BASH_SOURCE[0]}\")\" in your script."
+  exit 1
+fi
