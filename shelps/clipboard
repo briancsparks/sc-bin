@@ -1,0 +1,32 @@
+# Clipboard Commands
+
+## Copy to Clipboard
+| Platform        | Command                          |
+|-----------------|----------------------------------|
+| macOS           | + _pbcopy_                       |
+| Linux (X11 Alt) | + _xsel --clipboard_             |
+| Windows (CMD)   | + _clip_                         |
+| WSL             | + _clip.exe_                     |
+| | |
+| Linux (X11)     | xclip -selection clipboard       |
+| Linux (Wayland) | wl-copy                          |
+| Windows (PS)    | Set-Clipboard                    |
+| WSL (Alt)       | win32yank.exe -i                 |
+| Node.js         | clipboardy.writeSync(text)       |
+| Go              | clipboard.WriteAll(text)         |
+
+## Paste from Clipboard
+| Platform        | Command                          |
+|-----------------|----------------------------------|
+| macOS           | + _pbpaste_                      |
+| Linux (X11 Alt) | + _xsel --clipboard_             |
+| | |
+| Linux (X11)     | xclip -selection clipboard -o    |
+| Linux (Wayland) | wl-paste                         |
+| Windows (CMD)   | (not available)                  |
+| Windows (PS)    | Get-Clipboard                    |
+| WSL             | powershell.exe Get-Clipboard     |
+| WSL (Alt)       | win32yank.exe -o                 |
+| Node.js         | clipboardy.readSync()            |
+| Go              | clipboard.ReadAll()              |
+
