@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+
+errcho() { echo "$@" 1>&2; }
+die() { errcho "$@"; exit 1; }
+
+# Check if we're on macOS or Linux
+if [[ "$(uname)" == "Darwin" ]]; then
+  # macOS requires an empty string as a parameter to -i
+  sed -i '' "$@"
+else
+  # Linux version
+  sed -i "$@"
+fi
+
+
