@@ -1,13 +1,6 @@
 
-# only echo in interactive login shells
-_rc_echo_prc() {
-  if [ -n "$SSH_CLIENT" ] && [ -z "$PS1" ]; then
-    return
-  fi
-  echo "$@"
-}
-
-_rc_echo_prc "    ++++ .pathrc start"
+source "$HOME/sc-bin/inc/rc_utils"
+_rc_echo "    ++++ .pathrc start"
 
 # ----------- add to PATH, without dups ---------------
 add_to_path() {
@@ -114,5 +107,5 @@ fi
 
 # --- BCS End ----------------------------
 
-_rc_echo_prc "    ---- .pathrc end"
-unset -f _rc_echo_prc
+_rc_echo "    ---- .pathrc end"
+

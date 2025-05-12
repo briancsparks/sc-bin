@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Set idle delays
+# 4 hours = 14400 seconds for AC power
+gsettings set org.gnome.desktop.session idle-delay 14400
+
+# 20 minutes = 1200 seconds for battery
+# Note: This requires checking battery status, so we'll need to watch for power changes
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
+
+# Lid close behavior
+# AC: just blank the screen
+gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'blank'
+
+# Battery: keep default behavior (usually suspend)
+# Not changing this since you'll want the laptop to preserve battery 
+# when moving between locations
+
+echo "Power management settings updated:"
+echo "- Screen will blank after 4 hours on AC power"
+echo "- Screen will blank after 20 minutes on battery"
+echo "- Closing lid while on AC power will only blank the screen"
+echo "- Default suspend behavior maintained for battery power"
