@@ -60,9 +60,9 @@ export DENO_INSTALL="/home/$USER/.deno"
 #export PATH="$DENO_INSTALL/bin:$PATH"
 add_to_path "$DENO_INSTALL/bin"
 
-. "/home/brian/.deno/env"
+[ -f "/home/brian/.deno/env" ] && source "/home/brian/.deno/env"
 if [ -n "$PS1" ]; then
-  source /home/brian/.local/share/bash-completion/completions/deno.bash
+  [ -f /home/brian/.local/share/bash-completion/completions/deno.bash ] && source /home/brian/.local/share/bash-completion/completions/deno.bash
 fi
 
 # bun
