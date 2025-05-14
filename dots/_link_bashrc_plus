@@ -1,7 +1,18 @@
 
-#echo "    ++++ .bashrc start"
+### Put these at the top of the file; delete this line
+
+# Only echo in interactive login shells
+source "$HOME/sc-bin/inc/rc_utils"
+_rc_echo "    ++++ .bashrc start"
+
+
+### Leave these at the end of the file; delete this line.
 
 # --- BCS Start ----------------------------
+
+if [ -f "$HOME/sc-bin/dots/_pathrc" ]; then
+  . "$HOME/sc-bin/dots/_pathrc"
+fi
 
 if [ -f "$HOME/sc-bin/dots/_bashrc_plus" ]; then
   . "$HOME/sc-bin/dots/_bashrc_plus"
@@ -9,5 +20,5 @@ fi
 
 # --- BCS End ----------------------------
 
-#echo "    ---- .bashrc end"
+_rc_echo "    ---- .bashrc end"
 

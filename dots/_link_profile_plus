@@ -1,7 +1,18 @@
 
-#echo "    ++++ .profile start"
+### Put these at the top of the file; delete this line
+
+# Only echo in interactive login shells
+source "$HOME/sc-bin/inc/rc_utils"
+_rc_echo "    ++++ .profile start"
+
+
+### Leave these at the end of the file; delete this line.
 
 # --- BCS Start ----------------------------
+
+if [ -f "$HOME/sc-bin/dots/_pathrc" ]; then
+  . "$HOME/sc-bin/dots/_pathrc"
+fi
 
 if [ -f "$HOME/sc-bin/dots/_profile_plus" ]; then
   . "$HOME/sc-bin/dots/_profile_plus"
@@ -9,5 +20,5 @@ fi
 
 # --- BCS End ----------------------------
 
-#echo "    ---- .profile end"
+_rc_echo "    ---- .profile end"
 

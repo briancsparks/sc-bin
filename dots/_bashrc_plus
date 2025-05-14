@@ -12,6 +12,8 @@
 export EDITOR='vim'
 export VISUAL='vim'
 
+export NIXPKGS_ALLOW_UNFREE=1
+
 if [ -f "$HOME/.functions" ]; then
   . "$HOME/.functions"
 fi
