@@ -1,13 +1,7 @@
 
 # only echo in interactive login shells
-_rc_echo_pp() {
-  if [ -n "$SSH_CLIENT" ] && [ -z "$PS1" ]; then
-    return
-  fi
-  echo "$@"
-}
-
-_rc_echo_pp "    ++++ _profile_plus start"
+source "$HOME/sc-bin/inc/rc_utils"
+_rc_echo "    ++++ _profile_plus start"
 
 # --- User Settings Start --------------------------------------
 
@@ -53,5 +47,5 @@ fi
 
 # --- User Settings End --------------------------------------
 
-_rc_echo_pp "    ---- _profile_plus end"
-unset -f _rc_echo_pp
+_rc_echo "    ---- _profile_plus end"
+

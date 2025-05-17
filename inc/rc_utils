@@ -23,6 +23,17 @@ _rc_echo() {
   if [ -n "$SSH_CLIENT" ] && [ -z "$PS1" ]; then
     return
   fi
+
+  if [ -n "$DEVBOX_PROJECT_ROOT" ]; then
+    if [[ "$DEVBOX_PROJECT_ROOT" == `pwd` ]]; then
+      return
+    fi
+  fi
+
+  if [ -n "$BCS_NOECHO_RCFILES" ]; then
+    return
+  fi
+
   errcho "$@"
 }
 

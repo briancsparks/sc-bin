@@ -162,6 +162,10 @@ nmap <silent> ,. :nohlsearch<CR>
 
 :nnoremap <F5> :filetype detect<CR>
 
+" Automatically reload files when changed externally
+set autoread
+au FocusGained,BufEnter * checktime
+
 
 
 " Switch to syntastic style Next and previous error (quickfix)

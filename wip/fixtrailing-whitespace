@@ -1,9 +1,44 @@
 #!/bin/bash -e
 
-script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+#sed -i -e 's/[[:space:]]*$//' "$1"
 
-errcho() { echo "$@" 1>&2; }
-die() { errcho "$@"; exit 1; }
+# Function to check if current directory is a git repository
+is_git_repo() {
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    return 0  # True, it is a git repo
+  else
+    return 1  # False, not a git repo
+  fi
+}
 
-sedi -e 's/[[:space:]]*$//' "$1"
+# Function to fix trailing whitespace in a file
+fix_file() {
+  if [ -f "$1" ]; then
+    echo "Fixing trailing whitespace in: $1"
+    sed -i -e 's/[[:space:]]*$//' "$1"
+  else
+    echo "Warning: File not found: $1"
+  fi
+}
+
+# If one argument is provided, fix that specific file
+if [ $# -eq 1 ]; then
+  fix_file "$1"
+# If no arguments are provided, fix all dirty files in git
+elif [ $# -eq 0 ]; then
+  # Check if current directory is a git repository
+  if is_git_repo; then
+    echo "Fixing trailing whitespace in all git dirty files..."
+    git status
+    git diff --name-only --diff-filter=d -z | xargs -0 -L1 sed -i -e 's/[[:space:]]*$//'
+  else
+    echo "Error: Not a git repository. Please run this from within a git repository or specify a file."
+    exit 1
+  fi
+else
+  echo "Usage: $0 [filename]"
+  echo "  With no arguments: fixes all git dirty files (must be in a git repo)"
+  echo "  With one argument: fixes only the specified file"
+  exit 1
+fi
 
