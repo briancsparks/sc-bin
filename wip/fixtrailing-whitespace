@@ -23,13 +23,24 @@ fix_file() {
 
 # If one argument is provided, fix that specific file
 if [ $# -eq 1 ]; then
-  fix_file "$1"
+  if [[ "$1" == "all" ]]; then
+    echo "Fixing all..."
+
+    for f in `git ls-files`; do
+      if [[ `sed -n '/[[:space:]]$/p' $f | wc -l` != 0 ]]; then
+        echo "Fixing $f"
+        sed -i -e 's/[[:space:]]*$//' $f
+      fi
+    done
+  else
+    fix_file "$1"
+  fi
 # If no arguments are provided, fix all dirty files in git
 elif [ $# -eq 0 ]; then
   # Check if current directory is a git repository
   if is_git_repo; then
     echo "Fixing trailing whitespace in all git dirty files..."
-    git status
+    git diff --name-only
     git diff --name-only --diff-filter=d -z | xargs -0 -L1 sed -i -e 's/[[:space:]]*$//'
   else
     echo "Error: Not a git repository. Please run this from within a git repository or specify a file."
