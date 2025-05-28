@@ -105,6 +105,10 @@ if [ -f "$HOME/_profile_local" ]; then
   . "$HOME/_profile_local"
 fi
 
+if [[ $- == *i* ]]; then
+  _rc_echo "         .pathrc interactive-only"
+fi
+
 # --- BCS End ----------------------------
 
 _rc_echo "    ---- .pathrc end"

@@ -34,7 +34,7 @@ _rc_echo() {
     return
   fi
 
-  errcho "$@"
+  errcho "$@ ($-)"
 }
 
 
