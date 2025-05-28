@@ -11,6 +11,9 @@ if [[ $# > 0 ]]; then
   if [[ -f "${script_dir}/shelps/${SUB_SHELP}" ]]; then
     cat "${script_dir}/shelps/${SUB_SHELP}" | glow
     exit 0
+  elif [[ -f "${script_dir}/shelps/${SUB_SHELP}.md" ]]; then
+    cat "${script_dir}/shelps/${SUB_SHELP}.md" | glow
+    exit 0
   else
     die "Cannot find shelp for \"$SUB_SHELP\" (Try: `ls $script_dir/shelps | tr ' ' ' ' | tr '\n' ' '`)"
   fi

@@ -8,6 +8,10 @@ indent_size = 2
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+# Override for Go files
+[*.go]
+indent_size = 4
+
 # Override for Python files
 [*.py]
 indent_size = 4
