@@ -119,6 +119,10 @@ docker config ls
 -- BuildX
 docker buildx ls
 
+-- Recents -----------------------
+showinstalled                             Show software user has intentionally installed (alias)
+showmemory                                Show stats about the memory sticks installed
+
 -- Snippets -----------------------
 Generate SSH key:           ssh-keygen -t rsa -b 4096 -C "email.address@gmail.com" -f id_rsa-myname
 

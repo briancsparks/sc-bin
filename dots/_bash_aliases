@@ -20,6 +20,7 @@ alias ls='ls --color=auto'
 alias showpath='echo $PATH | tr ":" "\n"'
 alias showenv='env | sort'
 alias showinstalled='zcat -f /var/log/apt/history.log* | grep -E "apt(-get)? install "'
+alias showmemory='sudo dmidecode -t memory | egrep -i "size|speed|type|manufacturer"'
 
 alias cls='printf "\ec"'
 alias chmox='chmod +x '
