@@ -2,8 +2,9 @@
 #echo "._bash_aliases start"
 
 alias ghclone='git clone --recurse-submodules git@github.com:${GH_USER}/${GH_PROJECT}'
-alias gt='mcd ~/dev/goddard/aurie'
 alias dx='devbox'
+alias ccode='npx @anthropic-ai/claude-code@latest'
+alias gshelp='shelp | glow'
 alias c='clear'
 
 alias condef='conda activate base'
@@ -34,8 +35,11 @@ alias ssh='ssh -A '
 alias vim='vim -p'
 alias nvim='nvim -p'
 alias nv='nvim -p'
+alias glow='glow -w 0'
 
-alias  vim-shelp-files='vim -p $HOME/sc-bin/shelp $HOME/sc-bin/snippets/*'
+#alias  vim-shelp-files='vim -p $HOME/sc-bin/shelp $HOME/sc-bin/snippets/*'
+
+alias  vim-shelp-files='vim -p $HOME/sc-bin/index-of-shelps.md $HOME/sc-bin/todo-for-shelps.md $HOME/sc-bin/shelp $HOME/sc-bin/shelps/*'
 alias vim-config-files='vim -p $HOME/.profile $HOME/.bashrc $HOME/.bash_aliases $HOME/.functions $HOME/sc-bin/dots/* $HOME/bin/setprompt'
 alias  vim-setup-files='vim -p $HOME/.aws/config $HOME/.aws/credentials $HOME/.ssh/config'
 

@@ -154,3 +154,9 @@ change `.config/gh/config.yml` to use `ssh`, not `https`.
 
 EOF
 
+cat "$script_dir/todo-for-shelps.md"
+echo ""
+echo ""
+cat "$script_dir/index-of-shelps.md"
+echo ""
+
