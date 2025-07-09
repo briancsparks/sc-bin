@@ -88,6 +88,8 @@ filetype plugin indent on    " required
 :syntax on
 :set ruler
 :set clipboard=unnamed
+command! TrimWS :%s/\s\+$//e
+cabbrev trimws TrimWS
 
 " ----- Zig -- NO WAY -----
 let g:zig_fmt_autosave = 0
