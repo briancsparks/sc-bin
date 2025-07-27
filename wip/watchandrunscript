@@ -1,0 +1,29 @@
+#!/bin/bash -e
+
+ # For '###A' and the like, follow instructions and remove the leading space.
+ ###A one-line description
+
+ ###B longer description
+ ###B
+ ###B --including
+ ###B --flags           And descriptions for a usage statement
+
+script_dir="$( cd "$(dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" && pwd )"
+
+script_to_run_dir="$1"
+shift
+#script_to_run="$2"
+
+inotifywait -m -e modify "$script_to_run_dir" | while read path action file; do
+  echo "$file was $action in $path"
+
+  # Can check $file (found) with $script_to_run
+
+  # Delay for VIM to finish writing
+  sleep 0.3
+  #"${script_to_run_dir}${file}" >/dev/null
+  "${script_to_run_dir}${file}" "$@"
+done
+
+
+
