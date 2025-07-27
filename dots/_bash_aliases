@@ -4,6 +4,9 @@
 alias ghclone='git clone --recurse-submodules git@github.com:${GH_USER}/${GH_PROJECT}'
 alias dx='devbox'
 alias ccode='npx @anthropic-ai/claude-code@latest'
+alias npxshell='nix shell nixpkgs#nodejs'
+alias nodeshell='nix shell nixpkgs#nodejs'
+alias bunshell='nix shell nixpkgs#bun'
 alias gshelp='shelp | glow'
 alias c='clear'
 
@@ -35,11 +38,9 @@ alias ssh='ssh -A '
 alias vim='vim -p'
 alias nvim='nvim -p'
 alias nv='nvim -p'
-alias glow='glow -w 0'
+alias glow0='glow -w 0'
 
-#alias  vim-shelp-files='vim -p $HOME/sc-bin/shelp $HOME/sc-bin/snippets/*'
-
-alias  vim-shelp-files='vim -p $HOME/sc-bin/index-of-shelps.md $HOME/sc-bin/todo-for-shelps.md $HOME/sc-bin/shelp $HOME/sc-bin/shelps/*'
+alias  vim-shelp-files='vim -p $HOME/sc-bin/index-of-shelps.md $HOME/sc-bin/todo-for-shelps.md $HOME/sc-bin/shelps/* $HOME/sc-bin/shelp'
 alias vim-config-files='vim -p $HOME/.profile $HOME/.bashrc $HOME/.bash_aliases $HOME/.functions $HOME/sc-bin/dots/* $HOME/bin/setprompt'
 alias  vim-setup-files='vim -p $HOME/.aws/config $HOME/.aws/credentials $HOME/.ssh/config'
 
@@ -86,6 +87,9 @@ alias wip='git commit -am "WIP"'
 alias bump='git commit -am "bump version"'
 alias gfirst='git commit -am first'
 alias gprgp='git pull --rebase && git push'
+
+# Watching
+alias watchcode='for ((;;)); do clear; tree ; git ss; echo ""; git l; sleep 1.1; done '
 
 # SSHish
 alias scpix='scp    -o "StrictHostKeyChecking no" -o UserKnownHostsFile=/dev/null -o ConnectTimeout=1 -o LogLevel=quiet $@'

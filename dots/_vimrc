@@ -60,6 +60,17 @@ Plugin 'qualiabyte/vim-colorstepper'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+" BCS - My new stuff on top ----------------------------------
+
+" Fix trailing whitespace
+command! TrimWS :%s/\s\+$//e
+cabbrev trimws TrimWS
+
+" Fix tabs
+command! FixTabs %s/\t/  /g
+cabbrev fixtabs FixTabs
+
+" BCS - My new stuff on top END ------------------------------
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -88,8 +99,6 @@ filetype plugin indent on    " required
 :syntax on
 :set ruler
 :set clipboard=unnamed
-command! TrimWS :%s/\s\+$//e
-cabbrev trimws TrimWS
 
 " ----- Zig -- NO WAY -----
 let g:zig_fmt_autosave = 0

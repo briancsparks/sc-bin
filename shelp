@@ -160,3 +160,8 @@ echo ""
 cat "$script_dir/index-of-shelps.md"
 echo ""
 
+echo "To edit important files:"
+echo "vim-config-files"
+echo "vim-shelp-files"
+echo ""
+

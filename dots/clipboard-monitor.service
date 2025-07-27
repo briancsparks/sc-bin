@@ -1,0 +1,23 @@
+[Unit]
+Description=Clipboard Monitor
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/home/brian/sc-bin/wip/clipboard-monitor.sh
+Restart=always
+RestartSec=10
+#Environment="DISPLAY=:1"
+#Environment="XAUTHORITY=/run/user/1000/gdm/Xauthority"
+ImportEnvironment=DISPLAY XAUTHORITY
+
+[Install]
+WantedBy=default.target
+
+# When changing this file:
+#
+# systemctl --user daemon-reload
+# systemctl --user restart clipboard-monitor
+
+# See also: https://claude.ai/chat/e8ee936f-92ba-468b-a83e-b147e009725e
+

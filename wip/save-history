@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+mkdir -p /tmp/infobox
+history > /tmp/infobox/history.log
+
+cd $HOME/dev/infobox
+bun run index.js mv /tmp/infobox/history.log --force
+
